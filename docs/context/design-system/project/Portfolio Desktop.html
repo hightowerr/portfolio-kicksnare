@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kicksnare — Portfolio (Desktop)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Space+Grotesk:wght@300..700&family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --text:#010b09;
+    --primary:#06372d;
+    --secondary:#fcd078;
+    --ink:#010b09;
+    --paper:#f9fefd;
+    --muted:#566B65;
+    --line:rgba(6,55,45,0.10);
+    --accent:#ff5e00;
+    --display: 'Geist', system-ui, sans-serif;
+    --serif: 'Instrument Serif', serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:var(--display);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+  body{overflow-x:hidden}
+  a{color:inherit}
+  ::selection{background:var(--accent);color:var(--paper)}
+
+  /* utility */
+  .wrap{max-width:1440px;margin:0 auto;padding:0 56px}
+  @media (max-width: 900px){ .wrap{padding:0 24px} }
+
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--muted);
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(255,94,0,0.18); }
+    50%      { box-shadow: 0 0 0 8px rgba(255,94,0,0.04); }
+  }
+
+  /* Soundwave mark — 5 bars: kick → decay → snare → decay → tail */
+  .sw rect { transform-box: fill-box; transform-origin: 50% 50%; }
+  .sw rect:nth-child(1) { animation: sw-hit   1.6s ease-out      infinite; animation-delay: 0s;   }
+  .sw rect:nth-child(2) { animation: sw-decay 1.6s ease-in-out   infinite; animation-delay: .15s; }
+  .sw rect:nth-child(3) { animation: sw-hit   1.6s ease-out      infinite; animation-delay: .4s;  }
+  .sw rect:nth-child(4) { animation: sw-decay 1.6s ease-in-out   infinite; animation-delay: .55s; }
+  .sw rect:nth-child(5) { animation: sw-decay 1.6s ease-in-out   infinite; animation-delay: .75s; }
+  @keyframes sw-decay { 0%, 100% { transform: scaleY(0.55); } 50% { transform: scaleY(1); } }
+  @keyframes sw-hit   { 0%, 8%, 100% { transform: scaleY(1); } 4% { transform: scaleY(1.08); } }
+  @media (prefers-reduced-motion: reduce) { .sw rect { animation: none !important; } }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .cta-primary:hover .cta-arr { transform: translateX(3px); }
+
+  /* link underline grow */
+  .link-uline{position:relative;display:inline-block;}
+  .link-uline::after{
+    content:'';position:absolute;left:0;bottom:-2px;height:1px;width:100%;
+    background:currentColor;transform-origin:right;transform:scaleX(1);
+    transition:transform .4s cubic-bezier(.2,.7,.2,1);
+  }
+  .link-uline:hover::after{transform-origin:left;transform:scaleX(1);}
+
+  /* Nav link */
+  .navlink{
+    position:relative;text-decoration:none;color:var(--ink);font-size:14px;font-weight:500;
+    padding:6px 2px;
+  }
+  .navlink::after{
+    content:'';position:absolute;left:0;bottom:-2px;height:1px;width:100%;background:currentColor;
+    transform:scaleX(0);transform-origin:right;transition:transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .navlink:hover::after{transform:scaleX(1);transform-origin:left;}
+</style>
+
+<script>
+  window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "heroLayout": "left",
+    "typePair": "space-crimson"
+  }/*EDITMODE-END*/;
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="case-study.jsx"></script>
+<script type="text/babel" src="portfolio-desktop-app.jsx"></script>
+</head>
+<body style="font-family: &quot;PT Sans&quot;">
+  <template id="__bundler_thumbnail" data-bg-color="#f9fefd">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(330 280)">
+        <rect x="0"   y="0"   width="60" height="240" rx="30" fill="#ff5e00"/>
+        <rect x="100" y="50"  width="60" height="140" rx="30" fill="#06372d"/>
+        <rect x="200" y="20"  width="60" height="200" rx="30" fill="#ff5e00"/>
+        <rect x="300" y="70"  width="60" height="100" rx="30" fill="#06372d"/>
+        <rect x="400" y="100" width="60" height="40"  rx="20" fill="#06372d"/>
+      </g>
+      <text x="600" y="640" text-anchor="middle"
+        font-family="ui-sans-serif, system-ui, sans-serif"
+        font-size="64" font-weight="600" fill="#06372d"
+        letter-spacing="-2">kicksnare</text>
+    </svg>
+  </template>
+  <div id="root"></div>
+</body>
+</html>

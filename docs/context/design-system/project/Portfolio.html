@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Kicksnare — Portfolio</title>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Space+Grotesk:wght@300..700&family=Crimson+Pro:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --text:#010b09;
+    --primary:#06372d;
+    --secondary:#fcd078;
+    --ink:#010b09;
+    --paper:#f9fefd;
+    --muted:#566B65;
+    --line:rgba(6,55,45,0.10);
+    --accent:#ff5e00;
+    --accent-ink:#06372d;
+    --display: 'Geist', system-ui, sans-serif;
+    --serif: 'Instrument Serif', serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  html,body{margin:0;padding:0;background:#0E0E0E;color:var(--ink);font-family:var(--display);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
+  *{box-sizing:border-box}
+  /* The stage: vertical bands of darker, with the phone centered */
+  .stage{
+    min-height:100vh;width:100%;
+    background:
+      radial-gradient(1200px 600px at 20% 0%, rgba(255,94,0,0.07), transparent 60%),
+      radial-gradient(900px 500px at 85% 70%, rgba(120,180,255,0.04), transparent 60%),
+      linear-gradient(180deg,#0D0D0D 0%, #0A0A0A 100%);
+    color:#f9fefd;
+    overflow-x:hidden;
+  }
+  .stage-grid{
+    display:grid;grid-template-columns: 1fr auto 1fr;
+    gap:48px;align-items:center;
+    padding:48px 56px;min-height:100vh;
+  }
+  /* Side rails (desktop only) */
+  .rail{display:flex;flex-direction:column;gap:18px;color:rgba(249,254,253,0.55);
+    font-family:var(--mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;}
+  .rail .row{display:flex;justify-content:space-between;align-items:baseline;gap:24px;border-bottom:1px dashed rgba(255,255,255,0.08);padding-bottom:14px;}
+  .rail .row b{color:#f9fefd;font-weight:500;letter-spacing:0;text-transform:none;font-family:var(--display);font-size:13px;}
+  .rail-r{align-items:flex-end;text-align:right;}
+  .rail .lab{opacity:.55}
+  .rail h6{margin:0;font-family:var(--display);font-weight:500;font-size:12px;letter-spacing:0.18em;color:rgba(249,254,253,0.45);text-transform:uppercase;}
+
+  /* Soundwave mark — 5 bars: kick → decay → snare → decay → tail */
+  .sw rect { transform-box: fill-box; transform-origin: 50% 50%; }
+  .sw rect:nth-child(1) { animation: sw-hit   1.6s ease-out      infinite; animation-delay: 0s;   }
+  .sw rect:nth-child(2) { animation: sw-decay 1.6s ease-in-out   infinite; animation-delay: .15s; }
+  .sw rect:nth-child(3) { animation: sw-hit   1.6s ease-out      infinite; animation-delay: .4s;  }
+  .sw rect:nth-child(4) { animation: sw-decay 1.6s ease-in-out   infinite; animation-delay: .55s; }
+  .sw rect:nth-child(5) { animation: sw-decay 1.6s ease-in-out   infinite; animation-delay: .75s; }
+  @keyframes sw-decay { 0%, 100% { transform: scaleY(0.55); } 50% { transform: scaleY(1); } }
+  @keyframes sw-hit   { 0%, 8%, 100% { transform: scaleY(1); } 4% { transform: scaleY(1.08); } }
+  @media (prefers-reduced-motion: reduce) { .sw rect { animation: none !important; } }
+
+  .stage-foot{
+    position:fixed;left:0;right:0;bottom:0;padding:14px 20px;
+    display:flex;justify-content:space-between;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;
+    color:rgba(249,254,253,0.45);pointer-events:none;z-index:5;
+  }
+
+  @media (max-width: 900px){
+    .stage-grid{grid-template-columns: 1fr;padding:32px 16px;gap:24px;}
+    .rail{display:none;}
+    .stage-foot{display:none;}
+  }
+</style>
+
+<script>
+  // Persisted tweak defaults (edited by the host on tweak changes)
+  window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "heroLayout": "left",
+    "typePair": "space-crimson"
+  }/*EDITMODE-END*/;
+</script>
+
+<!-- React + Babel -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="ios-frame.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="portfolio-app.jsx"></script>
+</head>
+<body>
+  <div class="stage">
+    <div class="stage-grid">
+      <!-- Left rail -->
+      <aside class="rail" aria-hidden="true">
+        <h6>Kicksnare</h6>
+        <div class="row"><span class="lab">Status</span><b>Open · 2 slots</b></div>
+        <div class="row"><span class="lab">Based</span><b>Remote · GMT</b></div>
+        <div class="row"><span class="lab">Reply</span><b>&lt; 24h</b></div>
+        <div class="row"><span class="lab">Engagements</span><b>Sprint, retainer</b></div>
+        <div style="margin-top:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;color:rgba(249,254,253,0.35);">↓ Scroll inside the phone</div>
+      </aside>
+
+      <!-- Phone -->
+      <main id="phone-mount"></main>
+
+      <!-- Right rail -->
+      <aside class="rail rail-r" aria-hidden="true">
+        <h6>v 2.6 · May 26</h6>
+        <div class="row"><span class="lab">Built for</span><b>Founders, ops, marketers</b></div>
+        <div class="row"><span class="lab">Stack</span><b>Next · Vercel · Framer</b></div>
+        <div class="row"><span class="lab">Avg lift</span><b>2.4× conversion</b></div>
+        <div class="row"><span class="lab">Clients</span><b>17 · 9 countries</b></div>
+        <div style="margin-top:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;color:rgba(249,254,253,0.35);">Toggle Tweaks ↗</div>
+      </aside>
+    </div>
+
+    <div class="stage-foot">
+      <span>© 2026 Kicksnare</span>
+      <span>Mobile preview · 402 × 874</span>
+    </div>
+  </div>
+</body>
+</html>
