@@ -2,147 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, ArrowLeft, ArrowDiag, Close, Check } from './icons';
+import { cases as CASES, type CaseStudy } from '@/lib/cases';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface FontSet { display: string; serif: string }
-
-interface Case {
-  id: string;
-  name: string;
-  tagline: string;
-  sector: string;
-  year: string;
-  duration: string;
-  role: string;
-  stack: string;
-  services: string[];
-  tone: string;
-  problem: { lede: string; detail: string; pains: string[] };
-  approach: {
-    lede: string;
-    steps: { n: string; t: string; d: string }[];
-    insight: { label: string; body: string };
-  };
-  solution: {
-    shipped: string[];
-    figures: { label: string; aspect: string }[];
-  };
-  result: {
-    lede: string;
-    stats: { v: string; l: string; sub: string }[];
-    quote: { body: string; who: string; role: string };
-  };
-}
-
-const CASES: Case[] = [
-  {
-    id: 'halocrate',
-    name: 'Halocrate',
-    tagline: 'Cut bounce by 41% and demo bookings by 2.6× on a 1.2M-visit SaaS site.',
-    sector: 'B2B SaaS · Devtools', year: '2025', duration: '6 weeks',
-    role: 'Design + dev lead', stack: 'Next.js · Vercel · Framer',
-    services: ['Web design', 'Web development', 'CRO'],
-    tone: '#FBE9B8',
-    problem: {
-      lede: 'Halocrate brought in 1.2M annual visitors, but their legacy site couldn&apos;t keep up with the scale.',
-      detail: "The marketing site was a patchwork of four years of different freelancers. Bounce on /pricing was 73% because the page led with technical features instead of outcomes. Traffic was climbing, but demo bookings remained flat for three consecutive quarters.",
-      pains: [
-        '/pricing answered technical questions, not buyer objections',
-        'Competing CTAs above the fold diluted primary funnel intent',
-        'Mobile conversion was 68% lower than desktop with no tracking in place',
-      ],
-    },
-    approach: {
-      lede: 'Marketing sites are products. They require the same artifacts and rigor.',
-      steps: [
-        { n: '01', t: 'Funnel teardown', d: 'Analyzed 90 days of GA4 + Heap data. Sized every leak in dollars of CAC.' },
-        { n: '02', t: 'Customer calls', d: 'Interviewed 12 customers to identify the exact friction point in the buying journey.' },
-        { n: '03', t: 'Hypothesis matrix', d: 'Scored every proposed change by expected lift vs effort. Prioritized sprint one for maximum ROI.' },
-        { n: '04', t: '1-week sprints', d: 'New /pricing live in week 2. Full homepage rebuild in week 4. Sales handoff in week 6.' },
-      ],
-      insight: { label: 'The bet', body: "Halocrate's buyer reads the docs before the pricing page. We rebuilt /pricing to lead with the integration matrix, not the tier ladder." },
-    },
-    solution: {
-      shipped: ['New homepage (5 sections, replaces 11)', 'New /pricing — integration-first, ROI calculator inline', 'New /docs landing with task-based nav', 'Mobile redesign — 60% reduction in page weight', 'GA4 + Segment event spec + revenue dashboard', 'Sales handoff: Notion + Loom playbook'],
-      figures: [{ label: '/pricing · before · after', aspect: '16/9' }, { label: '/homepage · 5 sections', aspect: '4/5' }, { label: 'ROI calculator · inline', aspect: '4/5' }, { label: 'mobile · key flows', aspect: '9/19' }],
-    },
-    result: {
-      lede: "Inside 60 days, Halocrate's funnel was rebuilt for revenue.",
-      stats: [{ v: '-41%', l: 'Bounce on /pricing', sub: '90-day rolling' }, { v: '2.6×', l: 'Demo bookings', sub: 'vs. prior quarter' }, { v: '-23%', l: 'Blended CAC', sub: 'paid + organic' }, { v: '3.4×', l: 'Mobile conversion', sub: 'previously flat' }],
-      quote: { body: "Kicksnare treated our site like a product. We got back something we could iterate on — not a redesign we'd have to redo in 18 months.", who: 'Maya O.', role: 'VP Growth, Halocrate' },
-    },
-  },
-  {
-    id: 'northbeam',
-    name: 'Northbeam DTC',
-    tagline: '3.1× ROAS on a $1.2M/yr paid account in one quarter.',
-    sector: 'DTC · Apparel', year: '2025 · ongoing', duration: 'Ongoing retainer',
-    role: 'Paid + UX lead', stack: 'Meta · Google · Shopify · Klaviyo',
-    services: ['Paid growth', 'UX', 'CRO'],
-    tone: '#D9E8E2',
-    problem: {
-      lede: 'Northbeam spent $100k monthly on ads without knowing which channels were driving profit.',
-      detail: 'Spend was climbing but ROAS was a black box. Ad fatigue was high, and the landing page experience for cold traffic was generic. No one could identify which channels were profitable within the return window.',
-      pains: ['Severe ad fatigue on top creative concepts', 'Single landing page used for all campaign types', 'Klaviyo flows had not been updated since 2023'],
-    },
-    approach: {
-      lede: 'Diagnose first. Spend second.',
-      steps: [
-        { n: '01', t: 'Attribution audit', d: "Implemented multi-touch attribution. Discovered 38% of 'Meta sales' were misattributed organic traffic." },
-        { n: '02', t: 'Creative teardown', d: 'Identified 4 winning concepts and killed 11 underperformers. established 6-variant weekly cadence.' },
-        { n: '03', t: 'Intent-matched LPs', d: 'Built 6 dedicated landing pages tailored to specific audience × intent quadrants.' },
-        { n: '04', t: 'Lifecycle rebuild', d: 'Complete rewrite of welcome, abandoned cart, and winback sequences.' },
-      ],
-      insight: { label: 'The bet', body: "Cold traffic does not want a homepage. We build pages that answer the ad the user just clicked, and nothing else." },
-    },
-    solution: {
-      shipped: ['Multi-touch attribution dashboard', '6 audience-matched landing pages', 'Weekly creative pipeline (12/wk)', 'Klaviyo welcome / abandoned / winback', 'Daily channel pacing report', 'Quarterly creative review cadence'],
-      figures: [{ label: 'attribution dashboard', aspect: '16/9' }, { label: 'cold LP · variant A', aspect: '4/5' }, { label: 'creative pipeline', aspect: '4/5' }, { label: 'lifecycle flows', aspect: '16/9' }],
-    },
-    result: {
-      lede: 'One quarter in, ROAS tripled and CAC fell by 34%.',
-      stats: [{ v: '3.1×', l: 'Blended ROAS', sub: 'Q1 vs Q4' }, { v: '-34%', l: 'Blended CAC', sub: 'Q1 vs Q4' }, { v: '+58%', l: 'Email revenue', sub: 'lifecycle flows' }, { v: '12', l: 'Creative / week', sub: 'from 2/wk' }],
-      quote: { body: 'For the first time we can tell which ads generated revenue. That changed how the entire team plans.', who: 'Tomás L.', role: 'CMO, Northbeam' },
-    },
-  },
-  {
-    id: 'mara',
-    name: 'Studio Mara',
-    tagline: 'Cut no-shows by 26% across a 14-location wellness chain.',
-    sector: 'Wellness · Multi-location', year: '2024', duration: '9 weeks',
-    role: 'Product design + SEO', stack: 'React Native · Supabase · Webflow',
-    services: ['App design', 'SEO', 'Brand'],
-    tone: '#FCE0CC',
-    problem: {
-      lede: 'Studio Mara lost 22% of its revenue every month to double-bookings and clients who didn&apos;t show up.',
-      detail: 'The existing platform could not scale with the business. Bookings were leaking through unconfirmed slots, and location pages were identical, killing any chance of local SEO rankings.',
-      pains: ['No-show rate increasing as locations scaled', 'Operational drift between app and staff schedules', '14 near-duplicate pages with zero local SEO presence'],
-    },
-    approach: {
-      lede: 'One app for clients. One ops view for managers. One programmatic SEO layer.',
-      steps: [
-        { n: '01', t: 'Booking flow rewrite', d: 'Reduced steps from 7 to 3. Added one-tap reschedule from the home screen.' },
-        { n: '02', t: 'Ops dashboard', d: 'Built a single-screen manager view with real-time schedule drift alerts.' },
-        { n: '03', t: 'Programmatic SEO', d: 'Generated 14 unique location pages with neighborhood content and local reviews.' },
-        { n: '04', t: 'Phased rollout', d: 'Deployed to 2 locations per week with zero downtime during cutover.' },
-      ],
-      insight: { label: 'The bet', body: 'Most no-shows are forgotten bookings. A 24h SMS with a one-tap reschedule option fixes the majority of them.' },
-    },
-    solution: {
-      shipped: ['New booking flow (3 steps)', 'Manager operations dashboard', '14 programmatic location pages', '24h SMS reminder + reschedule system', 'Local schema + automated reviews', 'Phased rollout playbook'],
-      figures: [{ label: 'booking flow · 3 steps', aspect: '9/19' }, { label: 'ops dashboard', aspect: '16/9' }, { label: 'location page · template', aspect: '4/5' }, { label: 'SMS · reschedule flow', aspect: '9/19' }],
-    },
-    result: {
-      lede: 'Inside 90 days, the chain achieved its highest utilization month on record.',
-      stats: [{ v: '-26%', l: 'No-show rate', sub: 'chain-wide' }, { v: '+38%', l: 'Local organic traffic', sub: '90-day rolling' }, { v: '+19%', l: 'Slot utilization', sub: 'average' }, { v: '3', l: 'Booking steps', sub: 'down from 7' }],
-      quote: { body: 'The app finally fits the business. We grew two more locations this year without the usual chaos.', who: 'Inez W.', role: 'Founder, Studio Mara' },
-    },
-  },
-];
 
 function StripedFig({ tone = '#EAF3EE', label = 'figure', aspect = '16/9', id }: { tone?: string; label?: string; aspect?: string; id: string }) {
   return (
     <div style={{ position: 'relative', width: '100%', aspectRatio: aspect, borderRadius: 16, overflow: 'hidden', background: tone, border: '1px solid rgba(6,55,45,0.06)' }}>
-      <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100 100">
+      <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true">
         <defs>
           <pattern id={`cs-stripes-${id}`} patternUnits="userSpaceOnUse" width="3" height="3" patternTransform="rotate(45)">
             <line x1="0" y1="0" x2="0" y2="3" stroke="rgba(6,55,45,0.06)" strokeWidth="1.5"/>
@@ -150,29 +18,29 @@ function StripedFig({ tone = '#EAF3EE', label = 'figure', aspect = '16/9', id }:
         </defs>
         <rect width="100" height="100" fill={`url(#cs-stripes-${id})`}/>
       </svg>
-      <div style={{ position: 'absolute', left: 14, bottom: 12, fontFamily: 'var(--mono)', fontSize: 10.5, letterSpacing: '0.08em', color: 'rgba(6,55,45,0.55)', textTransform: 'uppercase' }}>{label}</div>
+      <div style={{ position: 'absolute', left: 14, bottom: 12, fontFamily: 'var(--display)', fontSize: 10.5, letterSpacing: '0.14em', color: 'rgba(6,55,45,0.55)', textTransform: 'uppercase' }}>{label}</div>
     </div>
   );
 }
 
-function CSHeader({ c, fonts, index, total }: { c: Case; fonts: FontSet; index: number; total: number }) {
+function CSHeader({ c, fonts, index, total, isMobile }: { c: CaseStudy; fonts: FontSet; index: number; total: number; isMobile: boolean }) {
   return (
-    <header style={{ padding: '40px 56px 56px', borderBottom: '1px solid var(--line)' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)', letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 28 }}>
+    <header style={{ padding: isMobile ? '28px 20px 40px' : '40px 56px 56px', borderBottom: '1px solid var(--line)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--display)', fontSize: 11, color: 'var(--muted)', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 28 }}>
         <span>Case study {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}</span>
         <span>{c.year} · {c.duration}</span>
       </div>
-      <h1 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 600, fontSize: 'clamp(56px, 7.5vw, 112px)', lineHeight: 0.92, letterSpacing: '-0.035em', color: 'var(--ink)' }}>
+      <h1 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 600, fontSize: 'clamp(3.5rem, 7.5vw, 7rem)', lineHeight: 0.92, letterSpacing: '-0.035em', color: 'var(--ink)' }}>
         {c.name}<span style={{ color: 'var(--accent)' }}>.</span>
       </h1>
-      <p style={{ margin: '20px 0 0', maxWidth: 720, fontFamily: fonts.display, fontSize: 22, lineHeight: 1.3, letterSpacing: '-0.012em', color: 'var(--ink)' }}>
+      <p style={{ margin: '20px 0 0', maxWidth: 720, fontFamily: fonts.display, fontSize: 22, lineHeight: 1.5, letterSpacing: '-0.012em', color: 'var(--ink)' }}>
         <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400 }}>{c.tagline}</span>
       </p>
-      <div style={{ marginTop: 44, display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 0, borderTop: '1px solid var(--line)' }}>
+      <div style={{ marginTop: 44, display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(5, 1fr)', gap: 0, borderTop: '1px solid var(--line)' }}>
         {([['Sector', c.sector], ['Role', c.role], ['Duration', c.duration], ['Stack', c.stack], ['Services', c.services.join(' · ')]] as [string, string][]).map(([k, v], i) => (
-          <div key={k} style={{ padding: '20px 16px 20px 0', borderRight: i < 4 ? '1px solid var(--line)' : 'none', paddingLeft: i === 0 ? 0 : 20, display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <span style={{ fontFamily: 'var(--mono)', fontSize: 10.5, letterSpacing: '0.08em', color: 'var(--muted)', textTransform: 'uppercase' }}>{k}</span>
-            <span style={{ fontFamily: fonts.display, fontSize: 15, fontWeight: 500, letterSpacing: '-0.005em', color: 'var(--ink)' }}>{v}</span>
+          <div key={k} style={{ padding: '20px 16px 20px 0', borderRight: isMobile ? (i % 2 === 0 ? '1px solid var(--line)' : 'none') : (i < 4 ? '1px solid var(--line)' : 'none'), paddingLeft: isMobile ? (i % 2 === 0 ? 0 : 20) : (i === 0 ? 0 : 20), display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <span style={{ fontFamily: 'var(--display)', fontSize: 10.5, letterSpacing: '0.14em', color: 'var(--muted)', textTransform: 'uppercase' }}>{k}</span>
+            <span style={{ fontFamily: fonts.display, fontSize: 16, fontWeight: 500, letterSpacing: '-0.005em', color: 'var(--ink)' }}>{v}</span>
           </div>
         ))}
       </div>
@@ -183,14 +51,14 @@ function CSHeader({ c, fonts, index, total }: { c: Case; fonts: FontSet; index: 
   );
 }
 
-function CSSectionHead({ n, label, title, ital, lede, fonts }: { n: string; label: string; title: string; ital?: string; lede?: string; fonts: FontSet }) {
+function CSSectionHead({ n, label, title, ital, lede, fonts, isMobile }: { n: string; label: string; title: string; ital?: string; lede?: string; fonts: FontSet; isMobile: boolean }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 80, marginBottom: 40 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 2fr', gap: isMobile ? 20 : 80, marginBottom: 40 }}>
       <div>
-        <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--muted)', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>({n}) {label}</div>
+        <div style={{ fontFamily: 'var(--display)', fontSize: 11, color: 'var(--muted)', letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: 14 }}>({n}) {label}</div>
       </div>
       <div>
-        <h2 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 600, fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 0.98, letterSpacing: '-0.025em' }}>
+        <h2 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 600, fontSize: 'clamp(2.25rem, 4vw, 3.5rem)', lineHeight: 0.98, letterSpacing: '-0.025em' }}>
           {title}{' '}{ital && <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400 }}>{ital}</span>}
         </h2>
         {lede && <p style={{ margin: '22px 0 0', maxWidth: 640, color: 'var(--muted)', fontSize: 17, lineHeight: 1.55 }}>{lede}</p>}
@@ -199,19 +67,19 @@ function CSSectionHead({ n, label, title, ital, lede, fonts }: { n: string; labe
   );
 }
 
-function CSProblem({ c, fonts }: { c: Case; fonts: FontSet }) {
+function CSProblem({ c, fonts, isMobile }: { c: CaseStudy; fonts: FontSet; isMobile: boolean }) {
   return (
-    <section style={{ padding: '88px 56px', borderBottom: '1px solid var(--line)' }}>
-      <CSSectionHead n="01" label="The problem" title="What was leaking" ital="money." fonts={fonts}/>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 80, alignItems: 'start' }}>
-        <p style={{ margin: 0, fontFamily: fonts.display, fontSize: 22, lineHeight: 1.3, letterSpacing: '-0.012em', color: 'var(--ink)' }}>{c.problem.lede}</p>
+    <section style={{ padding: isMobile ? '48px 20px' : '88px 56px', borderBottom: '1px solid var(--line)' }}>
+      <CSSectionHead n="01" label="The problem" title="What was leaking" ital="money." fonts={fonts} isMobile={isMobile}/>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 2fr', gap: isMobile ? 24 : 80, alignItems: 'start' }}>
+        <p style={{ margin: 0, fontFamily: fonts.display, fontSize: 22, lineHeight: 1.5, letterSpacing: '-0.012em', color: 'var(--ink)' }}>{c.problem.lede}</p>
         <div>
           <p style={{ margin: 0, color: 'var(--muted)', fontSize: 17, lineHeight: 1.6 }}>{c.problem.detail}</p>
           <ul style={{ listStyle: 'none', padding: 0, margin: '32px 0 0' }}>
             {c.problem.pains.map((p, i) => (
               <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 18, padding: '18px 0', borderTop: '1px solid var(--line)', ...(i === c.problem.pains.length - 1 ? { borderBottom: '1px solid var(--line)' } : {}) }}>
-                <span style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--accent)', letterSpacing: '0.06em', minWidth: 28, paddingTop: 4 }}>{String(i + 1).padStart(2, '0')}</span>
-                <span style={{ fontFamily: fonts.display, fontSize: 18, lineHeight: 1.45, letterSpacing: '-0.008em', color: 'var(--ink)', flex: 1 }}>{p}</span>
+                <span style={{ fontFamily: 'var(--display)', fontSize: 11, color: 'var(--accent)', letterSpacing: '0.14em', minWidth: 28, paddingTop: 4 }}>{String(i + 1).padStart(2, '0')}</span>
+                <span style={{ fontFamily: fonts.display, fontSize: 18, lineHeight: 1.5, letterSpacing: '-0.008em', color: 'var(--ink)', flex: 1 }}>{p}</span>
               </li>
             ))}
           </ul>
@@ -221,27 +89,27 @@ function CSProblem({ c, fonts }: { c: Case; fonts: FontSet }) {
   );
 }
 
-function CSApproach({ c, fonts }: { c: Case; fonts: FontSet }) {
+function CSApproach({ c, fonts, isMobile }: { c: CaseStudy; fonts: FontSet; isMobile: boolean }) {
   return (
-    <section style={{ padding: '88px 56px', borderBottom: '1px solid var(--line)' }}>
-      <CSSectionHead n="02" label="The approach" title="The" ital="thinking." lede={c.approach.lede} fonts={fonts}/>
-      <div style={{ margin: '0 0 48px', padding: '28px 32px', borderRadius: 22, background: 'var(--primary)', color: 'var(--paper)', display: 'grid', gridTemplateColumns: 'auto 1fr', gap: 32, alignItems: 'center' }}>
-        <span style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.12em', color: 'rgba(249,254,253,0.5)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{c.approach.insight.label} →</span>
-        <p style={{ margin: 0, fontFamily: fonts.display, fontSize: 26, lineHeight: 1.25, letterSpacing: '-0.018em', color: 'var(--paper)' }}>
+    <section style={{ padding: isMobile ? '48px 20px' : '88px 56px', borderBottom: '1px solid var(--line)' }}>
+      <CSSectionHead n="02" label="The approach" title="The" ital="thinking." lede={c.approach.lede} fonts={fonts} isMobile={isMobile}/>
+      <div style={{ margin: '0 0 48px', padding: isMobile ? '24px 20px' : '28px 32px', borderRadius: 22, background: 'var(--primary)', color: 'var(--paper)', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'auto 1fr', gap: isMobile ? 16 : 32, alignItems: 'center' }}>
+        <span style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', color: 'rgba(249,254,253,0.5)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{c.approach.insight.label} →</span>
+        <p style={{ margin: 0, fontFamily: fonts.display, fontSize: isMobile ? 20 : 26, lineHeight: 1.25, letterSpacing: '-0.018em', color: 'var(--paper)' }}>
           <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, color: 'var(--accent)' }}>"</span>
           {c.approach.insight.body}
           <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, color: 'var(--accent)' }}>"</span>
         </p>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: 0 }}>
         {c.approach.steps.map((s, i) => (
-          <div key={s.n} style={{ padding: '28px 24px 28px 0', borderTop: '1px solid var(--line)', paddingLeft: i === 0 ? 0 : 20, borderLeft: i > 0 ? '1px solid var(--line)' : 'none', minHeight: 220, position: 'relative' }}>
+          <div key={s.n} style={{ padding: '28px 24px 28px 0', borderTop: '1px solid var(--line)', paddingLeft: isMobile ? (i % 2 === 0 ? 0 : 20) : (i === 0 ? 0 : 20), borderLeft: isMobile ? (i % 2 > 0 ? '1px solid var(--line)' : 'none') : (i > 0 ? '1px solid var(--line)' : 'none'), minHeight: isMobile ? 160 : 220, position: 'relative' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 22 }}>
-              <span style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.06em', color: 'var(--muted)' }}>{s.n}</span>
+              <span style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', color: 'var(--muted)' }}>{s.n}</span>
               {i < c.approach.steps.length - 1 && <ArrowRight size={13} color="var(--muted)"/>}
             </div>
             <h3 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 500, fontSize: 22, lineHeight: 1.1, letterSpacing: '-0.02em' }}>{s.t}</h3>
-            <p style={{ margin: '12px 0 0', color: 'var(--muted)', fontSize: 14.5, lineHeight: 1.5, maxWidth: 240 }}>{s.d}</p>
+            <p style={{ margin: '12px 0 0', color: 'var(--muted)', fontSize: 16, lineHeight: 1.5, maxWidth: 240 }}>{s.d}</p>
           </div>
         ))}
       </div>
@@ -249,20 +117,20 @@ function CSApproach({ c, fonts }: { c: Case; fonts: FontSet }) {
   );
 }
 
-function CSSolution({ c, fonts }: { c: Case; fonts: FontSet }) {
+function CSSolution({ c, fonts, isMobile }: { c: CaseStudy; fonts: FontSet; isMobile: boolean }) {
   return (
-    <section style={{ padding: '88px 56px', borderBottom: '1px solid var(--line)' }}>
-      <CSSectionHead n="03" label="The solution" title="What we" ital="shipped." fonts={fonts}/>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 80, alignItems: 'start' }}>
+    <section style={{ padding: isMobile ? '48px 20px' : '88px 56px', borderBottom: '1px solid var(--line)' }}>
+      <CSSectionHead n="03" label="The solution" title="What we" ital="shipped." fonts={fonts} isMobile={isMobile}/>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 2fr', gap: isMobile ? 32 : 80, alignItems: 'start' }}>
         <div>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 18 }}>Deliverables</div>
+          <div style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 18 }}>Deliverables</div>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {c.solution.shipped.map((s, i) => (
               <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, padding: '14px 0', borderTop: '1px solid var(--line)', ...(i === c.solution.shipped.length - 1 ? { borderBottom: '1px solid var(--line)' } : {}) }}>
                 <span style={{ width: 16, height: 16, borderRadius: 999, marginTop: 3, flexShrink: 0, border: '1px solid var(--accent)', background: 'rgba(255,94,0,0.12)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Check size={9}/>
                 </span>
-                <span style={{ fontFamily: fonts.display, fontSize: 15.5, lineHeight: 1.45, color: 'var(--ink)' }}>{s}</span>
+                <span style={{ fontFamily: fonts.display, fontSize: 16, lineHeight: 1.5, color: 'var(--ink)' }}>{s}</span>
               </li>
             ))}
           </ul>
@@ -277,47 +145,47 @@ function CSSolution({ c, fonts }: { c: Case; fonts: FontSet }) {
   );
 }
 
-function CSResult({ c, fonts }: { c: Case; fonts: FontSet }) {
+function CSResult({ c, fonts, isMobile }: { c: CaseStudy; fonts: FontSet; isMobile: boolean }) {
   return (
-    <section style={{ padding: '88px 56px', background: 'var(--primary)', color: 'var(--paper)' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 80, marginBottom: 56 }}>
+    <section style={{ padding: isMobile ? '48px 20px' : '88px 56px', background: 'var(--primary)', color: 'var(--paper)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 2fr', gap: isMobile ? 20 : 80, marginBottom: 56 }}>
         <div>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(249,254,253,0.55)', marginBottom: 14 }}>(04) The result</div>
+          <div style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(249,254,253,0.55)', marginBottom: 14 }}>(04) The result</div>
         </div>
-        <h2 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 500, fontSize: 'clamp(36px, 4vw, 56px)', lineHeight: 0.98, letterSpacing: '-0.025em', color: 'var(--paper)' }}>{c.result.lede}</h2>
+        <h2 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 500, fontSize: 'clamp(2.25rem, 4vw, 3.5rem)', lineHeight: 0.98, letterSpacing: '-0.025em', color: 'var(--paper)' }}>{c.result.lede}</h2>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: 0 }}>
         {c.result.stats.map((s, i) => (
-          <div key={i} style={{ padding: '32px 24px 32px 0', borderTop: '1px solid rgba(249,254,253,0.18)', paddingLeft: i === 0 ? 0 : 24, borderLeft: i > 0 ? '1px solid rgba(249,254,253,0.10)' : 'none', display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <div style={{ fontFamily: fonts.display, fontWeight: 500, fontSize: 'clamp(48px, 6vw, 84px)', lineHeight: 1, letterSpacing: '-0.03em', color: 'var(--accent)' }}>{s.v}</div>
+          <div key={i} style={{ padding: '32px 24px 32px 0', borderTop: '1px solid rgba(249,254,253,0.18)', paddingLeft: isMobile ? (i % 2 === 0 ? 0 : 24) : (i === 0 ? 0 : 24), borderLeft: isMobile ? (i % 2 > 0 ? '1px solid rgba(249,254,253,0.10)' : 'none') : (i > 0 ? '1px solid rgba(249,254,253,0.10)' : 'none'), display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div style={{ fontFamily: fonts.display, fontWeight: 500, fontSize: 'clamp(3rem, 6vw, 5.25rem)', lineHeight: 1, letterSpacing: '-0.03em', color: 'var(--accent)' }}>{s.v}</div>
             <div style={{ fontFamily: fonts.display, fontSize: 16, fontWeight: 500, color: 'var(--paper)', letterSpacing: '-0.005em' }}>{s.l}</div>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: 10.5, letterSpacing: '0.08em', color: 'rgba(249,254,253,0.5)', textTransform: 'uppercase' }}>{s.sub}</div>
+            <div style={{ fontFamily: 'var(--display)', fontSize: 10.5, letterSpacing: '0.14em', color: 'rgba(249,254,253,0.5)', textTransform: 'uppercase' }}>{s.sub}</div>
           </div>
         ))}
       </div>
-      <div style={{ marginTop: 64, padding: '36px 40px', borderRadius: 24, background: 'rgba(249,254,253,0.05)', border: '1px solid rgba(249,254,253,0.10)', display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 64, alignItems: 'center' }}>
+      <div style={{ marginTop: 64, padding: isMobile ? '28px 20px' : '36px 40px', borderRadius: 24, background: 'rgba(249,254,253,0.05)', border: '1px solid rgba(249,254,253,0.10)', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 2fr', gap: isMobile ? 24 : 64, alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
           <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, fontSize: 80, lineHeight: 0.8, color: 'var(--accent)' }}>"</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             <span style={{ fontFamily: fonts.display, fontSize: 16, fontWeight: 500, color: 'var(--paper)' }}>{c.result.quote.who}</span>
-            <span style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.08em', color: 'rgba(249,254,253,0.55)', textTransform: 'uppercase' }}>{c.result.quote.role}</span>
+            <span style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', color: 'rgba(249,254,253,0.55)', textTransform: 'uppercase' }}>{c.result.quote.role}</span>
           </div>
         </div>
-        <p style={{ margin: 0, fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, fontSize: 28, lineHeight: 1.3, letterSpacing: '-0.012em', color: 'var(--paper)' }}>{c.result.quote.body}</p>
+        <p style={{ margin: 0, fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, fontSize: isMobile ? 22 : 28, lineHeight: 1.3, letterSpacing: '-0.012em', color: 'var(--paper)' }}>{c.result.quote.body}</p>
       </div>
     </section>
   );
 }
 
-function CSCta({ c, fonts, onOpen }: { c: Case; fonts: FontSet; onOpen: (id: string) => void }) {
+function CSCta({ c, fonts, onOpen, isMobile }: { c: CaseStudy; fonts: FontSet; onOpen: (id: string) => void; isMobile: boolean }) {
   const nextIdx = (CASES.findIndex(x => x.id === c.id) + 1) % CASES.length;
   const next = CASES[nextIdx];
   return (
-    <section style={{ padding: '88px 56px 56px', background: 'var(--paper)' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 56, alignItems: 'stretch' }}>
+    <section style={{ padding: isMobile ? '48px 20px 40px' : '88px 56px 56px', background: 'var(--paper)' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.4fr 1fr', gap: isMobile ? 32 : 56, alignItems: 'stretch' }}>
         <div>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 18 }}>(05) Next steps</div>
-          <h2 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 600, fontSize: 'clamp(48px, 6vw, 88px)', lineHeight: 0.94, letterSpacing: '-0.03em' }}>
+          <div style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 18 }}>(05) Next steps</div>
+          <h2 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 600, fontSize: 'clamp(3rem, 6vw, 5.5rem)', lineHeight: 0.94, letterSpacing: '-0.03em' }}>
             Request your{' '}<span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400 }}>free audit.</span>
           </h2>
           <p style={{ margin: '20px 0 28px', maxWidth: 560, color: 'var(--muted)', fontSize: 17, lineHeight: 1.55 }}>
@@ -328,20 +196,20 @@ function CSCta({ c, fonts, onOpen }: { c: Case; fonts: FontSet; onOpen: (id: str
               DM @kicksnare on X
               <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 26, height: 26, borderRadius: 999, background: 'var(--accent)', color: '#06372d' }}><ArrowDiag size={13}/></span>
             </a>
-            <a href="mailto:hi@kicksnare.studio" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: fonts.display, fontWeight: 500, fontSize: 15, padding: '14px 4px', textDecoration: 'none', color: 'var(--ink)', borderBottom: '1px solid rgba(6,55,45,0.25)' }}>
+            <a href="mailto:hi@kicksnare.studio" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: fonts.display, fontWeight: 500, fontSize: 16, padding: '14px 4px', textDecoration: 'none', color: 'var(--ink)', borderBottom: '1px solid rgba(6,55,45,0.25)' }}>
               hi@kicksnare.studio
             </a>
           </div>
         </div>
         <button onClick={() => onOpen(next.id)} style={{ appearance: 'none', border: 0, padding: 0, cursor: 'pointer', textAlign: 'left', background: 'transparent', color: 'inherit', display: 'block', width: '100%' }}>
           <div style={{ position: 'relative', height: '100%', borderRadius: 22, overflow: 'hidden', background: next.tone, border: '1px solid rgba(6,55,45,0.05)', padding: 28, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', transition: 'transform .35s cubic-bezier(.2,.7,.2,1)', minHeight: 360 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.08em', color: 'rgba(6,55,45,0.55)', textTransform: 'uppercase' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', color: 'rgba(6,55,45,0.55)', textTransform: 'uppercase' }}>
               <span>Next case study →</span>
               <span>{String(nextIdx + 1).padStart(2, '0')} / {String(CASES.length).padStart(2, '0')}</span>
             </div>
             <div>
               <h3 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 600, fontSize: 56, lineHeight: 0.96, letterSpacing: '-0.03em' }}>{next.name}</h3>
-              <p style={{ margin: '14px 0 0', maxWidth: 360, fontFamily: fonts.display, fontSize: 16, color: 'var(--muted)', lineHeight: 1.4 }}>
+              <p style={{ margin: '14px 0 0', maxWidth: 360, fontFamily: fonts.display, fontSize: 16, color: 'var(--muted)', lineHeight: 1.5 }}>
                 <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400 }}>{next.tagline}</span>
               </p>
               <div style={{ marginTop: 24, display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: fonts.display, fontSize: 14, fontWeight: 500 }}>
@@ -355,19 +223,26 @@ function CSCta({ c, fonts, onOpen }: { c: Case; fonts: FontSet; onOpen: (id: str
   );
 }
 
-const navBtnStyle: React.CSSProperties = {
-  appearance: 'none', cursor: 'pointer',
-  width: 34, height: 34, borderRadius: 999,
-  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-  background: '#fff', border: '1px solid rgba(6,55,45,0.12)',
-  color: 'var(--ink)',
-};
-
 export default function CaseStudyModal({ caseId, onClose, onOpen, fonts }: { caseId: string; onClose: () => void; onOpen: (id: string) => void; fonts: FontSet }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollPct, setScrollPct] = useState(0);
+  const [entered, setEntered] = useState(false);
+  const isMobile = useIsMobile();
+
+  const navBtnSize = isMobile ? 44 : 34;
+  const navBtnStyle: React.CSSProperties = {
+    appearance: 'none', cursor: 'pointer',
+    width: navBtnSize, height: navBtnSize, borderRadius: 999,
+    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+    background: '#fff', border: '1px solid rgba(6,55,45,0.12)',
+    color: 'var(--ink)',
+  };
   const cIdx = Math.max(0, CASES.findIndex(c => c.id === caseId));
   const c = CASES[cIdx];
+
+  useEffect(() => {
+    requestAnimationFrame(() => setEntered(true));
+  }, []);
 
   useEffect(() => {
     const prev = document.body.style.overflow;
@@ -396,18 +271,43 @@ export default function CaseStudyModal({ caseId, onClose, onOpen, fonts }: { cas
       role="dialog"
       aria-modal="true"
       aria-label={`Case study: ${c.name}`}
-      style={{ position: 'fixed', inset: 0, zIndex: 100, background: 'rgba(6,55,45,0.55)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)', animation: 'cs-fade .25s ease' }}
-      onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 100,
+        background: isMobile ? 'var(--paper)' : 'rgba(6,55,45,0.55)',
+        backdropFilter: isMobile ? 'none' : 'blur(6px)',
+        WebkitBackdropFilter: isMobile ? 'none' : 'blur(6px)',
+        opacity: isMobile ? 1 : (entered ? 1 : 0),
+        transition: isMobile ? 'none' : 'opacity 250ms ease',
+      }}
+      onMouseDown={(e) => { if (e.target === e.currentTarget && !isMobile) onClose(); }}
     >
-      <div style={{ position: 'absolute', top: 24, right: 24, bottom: 24, left: 24, background: 'var(--paper)', color: 'var(--ink)', borderRadius: 28, overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 30px 80px rgba(0,0,0,0.35)', animation: 'cs-rise .35s cubic-bezier(.2,.7,.2,1)' }}>
-        <div style={{ position: 'relative', flexShrink: 0, padding: '16px 24px 16px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--line)', background: 'rgba(249,254,253,0.85)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-            <span style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.10em', color: 'var(--muted)', textTransform: 'uppercase' }}>Case · {String(cIdx + 1).padStart(2, '0')} / {String(CASES.length).padStart(2, '0')}</span>
-            <span style={{ fontFamily: fonts.display, fontSize: 15, fontWeight: 600, letterSpacing: '-0.005em' }}>{c.name}<span style={{ color: 'var(--accent)' }}>.</span></span>
-            <span style={{ fontFamily: fonts.display, fontSize: 14, color: 'var(--muted)' }}>—</span>
-            <span style={{ fontFamily: fonts.display, fontSize: 14, color: 'var(--muted)', maxWidth: 420, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.tagline}</span>
+      <div style={isMobile ? {
+        position: 'fixed', inset: 0,
+        background: 'var(--paper)', color: 'var(--ink)',
+        overflow: 'hidden', display: 'flex', flexDirection: 'column' as const,
+        transform: entered ? 'scale(1)' : 'scale(0.98)',
+        opacity: 1,
+        transition: 'transform 350ms cubic-bezier(.2,.7,.2,1)',
+      } : {
+        position: 'absolute' as const, top: 24, right: 24, bottom: 24, left: 24,
+        background: 'var(--paper)', color: 'var(--ink)',
+        borderRadius: 28, overflow: 'hidden',
+        display: 'flex', flexDirection: 'column' as const,
+        boxShadow: '0 30px 80px rgba(0,0,0,0.35)',
+        transform: entered ? 'scale(1)' : 'scale(0.98)',
+        opacity: 1,
+        transition: 'transform 350ms cubic-bezier(.2,.7,.2,1)',
+      }}>
+        <div style={{ position: 'relative', flexShrink: 0, padding: isMobile ? '12px 16px' : '16px 24px 16px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--line)', background: 'rgba(249,254,253,0.85)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 14, overflow: 'hidden', flex: 1, minWidth: 0 }}>
+            <span style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', color: 'var(--muted)', textTransform: 'uppercase', flexShrink: 0 }}>Case · {String(cIdx + 1).padStart(2, '0')} / {String(CASES.length).padStart(2, '0')}</span>
+            <span style={{ fontFamily: fonts.display, fontSize: 15, fontWeight: 600, letterSpacing: '-0.005em', flexShrink: 0 }}>{c.name}<span style={{ color: 'var(--accent)' }}>.</span></span>
+            {!isMobile && <>
+              <span style={{ fontFamily: fonts.display, fontSize: 14, color: 'var(--muted)' }}>—</span>
+              <span style={{ fontFamily: fonts.display, fontSize: 14, color: 'var(--muted)', maxWidth: 420, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.tagline}</span>
+            </>}
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
             <button aria-label="Previous case" onClick={() => onOpen(CASES[(cIdx - 1 + CASES.length) % CASES.length].id)} style={navBtnStyle}>
               <ArrowLeft size={14}/>
             </button>
@@ -415,7 +315,10 @@ export default function CaseStudyModal({ caseId, onClose, onOpen, fonts }: { cas
               <ArrowRight size={14}/>
             </button>
             <span style={{ width: 1, height: 22, background: 'var(--line)', margin: '0 4px' }}/>
-            <button aria-label="Close" onClick={onClose} style={{ ...navBtnStyle, background: 'var(--primary)', color: 'var(--paper)', border: '1px solid var(--ink)' }}>
+            <button aria-label="Close" onClick={onClose} style={{
+              ...navBtnStyle,
+              background: 'var(--primary)', color: 'var(--paper)', border: '1px solid var(--ink)',
+            }}>
               <Close size={13}/>
             </button>
           </div>
@@ -424,18 +327,14 @@ export default function CaseStudyModal({ caseId, onClose, onOpen, fonts }: { cas
           </div>
         </div>
         <div ref={scrollRef} onScroll={onScroll} style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
-          <CSHeader c={c} fonts={fonts} index={cIdx} total={CASES.length}/>
-          <CSProblem c={c} fonts={fonts}/>
-          <CSApproach c={c} fonts={fonts}/>
-          <CSSolution c={c} fonts={fonts}/>
-          <CSResult c={c} fonts={fonts}/>
-          <CSCta c={c} fonts={fonts} onOpen={onOpen}/>
+          <CSHeader c={c} fonts={fonts} index={cIdx} total={CASES.length} isMobile={isMobile}/>
+          <CSProblem c={c} fonts={fonts} isMobile={isMobile}/>
+          <CSApproach c={c} fonts={fonts} isMobile={isMobile}/>
+          <CSSolution c={c} fonts={fonts} isMobile={isMobile}/>
+          <CSResult c={c} fonts={fonts} isMobile={isMobile}/>
+          <CSCta c={c} fonts={fonts} onOpen={onOpen} isMobile={isMobile}/>
         </div>
       </div>
-      <style>{`
-        @keyframes cs-fade { from { opacity: 0 } to { opacity: 1 } }
-        @keyframes cs-rise { from { opacity: 0; transform: translateY(20px) scale(.99) } to { opacity: 1; transform: translateY(0) scale(1) } }
-      `}</style>
     </div>
   );
 }
