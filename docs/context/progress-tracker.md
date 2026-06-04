@@ -6,13 +6,13 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-Mobile-First Responsive — V7 Typography complete
+Mobile-First Responsive — all 9 slices (V1–V9) complete
 
 ---
 
 ## Current Goal
 
-V6: Bottom bar (next slice in mobile-first feature).
+None active. All mobile-first slices implemented.
 
 ---
 
@@ -43,13 +43,12 @@ V6: Bottom bar (next slice in mobile-first feature).
 
 ## In Progress
 
-Nothing active (V7 Typography complete, V6 next).
+Nothing active.
 
 ---
 
 ## Next Up
 
-- Mobile-First V6: Bottom bar
 - Review full section balance at various viewport widths
 - Consider whether `ui-context.md` Brand Non-Negotiable #5 needs updating to document the illustration exception
 

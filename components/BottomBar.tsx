@@ -48,6 +48,7 @@ export default function BottomBar({ isMobile, heroPassed, fonts }: BottomBarProp
       <a
         href="#contact"
         tabIndex={visible ? 0 : -1}
+        style={{
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',

@@ -194,7 +194,7 @@ body { margin: 0; }
 }
 
 .navlink {
-  font-family: 'Geist', system-ui, sans-serif;
+  font-family: var(--display);
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--ink);

@@ -104,7 +104,7 @@ export const cases: CaseStudy[] = [
       lede: 'Diagnose first. Spend second.',
       steps: [
         { n: '01', t: 'Attribution audit', d: "Implemented multi-touch attribution. Discovered 38% of 'Meta sales' were misattributed organic traffic." },
-        { n: '02', t: 'Creative teardown', d: 'Identified 4 winning concepts and killed 11 underperformers. established 6-variant weekly cadence.' },
+        { n: '02', t: 'Creative teardown', d: 'Identified 4 winning concepts and killed 11 underperformers. Established 6-variant weekly cadence.' },
         { n: '03', t: 'Intent-matched LPs', d: 'Built 6 dedicated landing pages tailored to specific audience \u00d7 intent quadrants.' },
         { n: '04', t: 'Lifecycle rebuild', d: 'Complete rewrite of welcome, abandoned cart, and winback sequences.' },
       ],
