@@ -121,7 +121,7 @@ function AuditFig() {
         <foreignObject x="448" y="136" width="264" height="252">
           <img
             src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?fm=webp&fit=crop&w=456&q=80"
-            alt=""
+            alt="Tradesman's website shown in a browser mockup before audit"
             loading="lazy"
             width={264}
             height={252}
@@ -273,6 +273,10 @@ function Header({
             border: 'none',
             cursor: 'pointer',
             padding: 8,
+            minWidth: 48,
+            minHeight: 48,
+            alignItems: 'center',
+            justifyContent: 'center',
             flexDirection: 'column',
             gap: 5,
           }}
@@ -546,6 +550,8 @@ function PainItem({ pain, index, fonts }: { pain: { t: string; n: string }; inde
               border: 'none',
               cursor: 'pointer',
               padding: 4,
+              minWidth: 48,
+              minHeight: 48,
               color: 'var(--accent)',
               display: 'flex',
               alignItems: 'center',
@@ -723,7 +729,7 @@ function About({ fonts }: { fonts: FontSet }) {
                 No account managers. No six-month timelines. You talk to the people building your product, and most projects are live in 4–8 weeks.
               </p>
               <p style={{ margin: '20px 0 0', maxWidth: 620, color: 'rgba(249,254,253,0.65)', fontSize: 18, lineHeight: 1.55 }}>
-                We cover product design and growth engineering — the combination that gets things built and makes them work once they&apos;re live. The agency is new. The craft is seven years proven.
+                Founded by OO — seven years in retail as a product manager. The agency is new. The craft is proven.
               </p>
               <div style={{ marginTop: 40, fontFamily: fonts.serif, fontStyle: 'italic', fontSize: 24, color: 'var(--accent)', letterSpacing: '-0.01em' }}>
                 &ldquo;If we miss the brief, we fix it free. If you still don&apos;t want it, you don&apos;t pay.&rdquo;
@@ -802,6 +808,8 @@ function ProcessStep({
                 border: 'none',
                 cursor: 'pointer',
                 padding: 4,
+                minWidth: 48,
+                minHeight: 48,
                 color: 'var(--accent)',
                 display: 'flex',
                 alignItems: 'center',
@@ -1135,10 +1143,12 @@ function Contact({ fonts, isMobile }: { fonts: FontSet; isMobile: boolean }) {
 
           {isMobile ? (
             <div style={{ marginTop: 56, display: 'flex', flexDirection: 'column', gap: 20 }}>
-              {/* Full-width primary CTA */}
+              {/* Full-width primary CTA — booking */}
               <Reveal delay={200}>
-                <button
-                  onClick={() => setModalOpen(true)}
+                <a
+                  href="https://proj-astro-seven.vercel.app/book/kicksnare"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
                     width: '100%',
                     padding: '18px 24px',
@@ -1154,11 +1164,12 @@ function Contact({ fonts, isMobile }: { fonts: FontSet; isMobile: boolean }) {
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: 10,
+                    textDecoration: 'none',
                   }}
                 >
-                  Contact us
-                  <ArrowRight size={14} />
-                </button>
+                  Book a slot
+                  <ArrowDiag size={14} />
+                </a>
               </Reveal>
 
               {/* Quiet text links */}
@@ -1169,6 +1180,26 @@ function Contact({ fonts, isMobile }: { fonts: FontSet; isMobile: boolean }) {
                   gap: 24,
                   flexWrap: 'wrap',
                 }}>
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="link-uline"
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: 'rgba(249,254,253,0.6)',
+                      fontFamily: fonts.display,
+                      fontSize: 15,
+                      fontWeight: 400,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      minHeight: 44,
+                      padding: '0 8px',
+                      margin: '0 -8px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Contact us →
+                  </button>
                   <a
                     href="https://x.com/kicksnare12"
                     target="_blank"
@@ -1189,26 +1220,6 @@ function Contact({ fonts, isMobile }: { fonts: FontSet; isMobile: boolean }) {
                   >
                     DM @kicksnare ↗
                   </a>
-                  <a
-                    href="https://proj-astro-seven.vercel.app/book/kicksnare"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-uline"
-                    style={{
-                      color: 'rgba(249,254,253,0.6)',
-                      textDecoration: 'none',
-                      fontFamily: fonts.display,
-                      fontSize: 15,
-                      fontWeight: 400,
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      minHeight: 44,
-                      padding: '0 8px',
-                      margin: '0 -8px',
-                    }}
-                  >
-                    Book a slot ↗
-                  </a>
                 </div>
               </Reveal>
             </div>
@@ -1218,7 +1229,7 @@ function Contact({ fonts, isMobile }: { fonts: FontSet; isMobile: boolean }) {
 
               <Reveal delay={200}>
                 <a
-                  href="https://x.com/kicksnare12"
+                  href="https://proj-astro-seven.vercel.app/book/kicksnare"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', textDecoration: 'none', color: 'var(--paper)', padding: '36px 36px 36px 40px', borderRadius: 28, background: 'rgba(249,254,253,0.05)', border: '1px solid rgba(249,254,253,0.12)', transition: 'background .3s, transform .35s cubic-bezier(.2,.7,.2,1)', minHeight: 200 }}
@@ -1226,9 +1237,9 @@ function Contact({ fonts, isMobile }: { fonts: FontSet; isMobile: boolean }) {
                   onMouseLeave={e => { e.currentTarget.style.background = 'rgba(249,254,253,0.05)'; e.currentTarget.style.transform = 'translateY(0)'; }}
                 >
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                    <span style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', color: 'rgba(249,254,253,0.5)', textTransform: 'uppercase' }}>Primary · DMs open</span>
-                    <span style={{ fontFamily: fonts.display, fontSize: 56, fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1 }}>@kicksnare12</span>
-                    <span style={{ color: 'rgba(249,254,253,0.6)', fontSize: 16, marginTop: 4 }}>DM your URL to @kicksnare12 on X. You&apos;ll get a 5-minute video audit back within 48 hours.</span>
+                    <span style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', color: 'rgba(249,254,253,0.5)', textTransform: 'uppercase' }}>Primary · Book a call</span>
+                    <span style={{ fontFamily: fonts.display, fontSize: 56, fontWeight: 500, letterSpacing: '-0.025em', lineHeight: 1 }}>Book a slot</span>
+                    <span style={{ color: 'rgba(249,254,253,0.6)', fontSize: 16, marginTop: 4 }}>Pick a time that works. 30 minutes, no obligation — we&apos;ll walk through your site and show you exactly where the opportunities are.</span>
                     <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontSize: 18, color: 'var(--accent)', marginTop: 12 }}>If you don&apos;t love it, you don&apos;t pay. No questions.</span>
                   </div>
                   <span style={{ width: 72, height: 72, borderRadius: 999, background: 'var(--accent)', color: '#06372d', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -1258,7 +1269,7 @@ function Contact({ fonts, isMobile }: { fonts: FontSet; isMobile: boolean }) {
 
                 <Reveal delay={340}>
                   <a
-                    href="https://proj-astro-seven.vercel.app/book/kicksnare"
+                    href="https://x.com/kicksnare12"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', textDecoration: 'none', color: 'var(--paper)', background: 'rgba(249,254,253,0.04)', border: '1px solid rgba(249,254,253,0.10)', borderRadius: 22, padding: 24, transition: 'background .3s, transform .35s cubic-bezier(.2,.7,.2,1)', flexGrow: 1 }}
@@ -1266,8 +1277,8 @@ function Contact({ fonts, isMobile }: { fonts: FontSet; isMobile: boolean }) {
                     onMouseLeave={e => { e.currentTarget.style.background = 'rgba(249,254,253,0.04)'; e.currentTarget.style.transform = 'translateY(0)'; }}
                   >
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                      <span style={{ fontFamily: 'var(--display)', fontSize: 10, letterSpacing: '0.14em', color: 'rgba(249,254,253,0.45)', textTransform: 'uppercase' }}>Availability</span>
-                      <span style={{ fontFamily: fonts.display, fontSize: 22, fontWeight: 500, color: 'var(--paper)', letterSpacing: '-0.015em' }}>Book a slot</span>
+                      <span style={{ fontFamily: 'var(--display)', fontSize: 10, letterSpacing: '0.14em', color: 'rgba(249,254,253,0.45)', textTransform: 'uppercase' }}>DMs open</span>
+                      <span style={{ fontFamily: fonts.display, fontSize: 22, fontWeight: 500, color: 'var(--paper)', letterSpacing: '-0.015em' }}>@kicksnare12</span>
                     </div>
                     <span style={{ width: 40, height: 40, borderRadius: 999, background: 'var(--accent)', color: '#06372d', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <ArrowDiag size={14} />
@@ -1295,8 +1306,11 @@ function Footer({ fonts }: { fonts: FontSet }) {
           <Soundwave size={48} />
           <span>kicksnare</span>
         </div>
-        <div style={{ marginTop: 28, display: 'flex', justifyContent: 'space-between', fontFamily: fonts.display, fontSize: 14 }}>
-          <a className="link-uline" href="https://x.com/kicksnare12" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(249,254,253,0.7)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', minHeight: 44, padding: '0 8px', margin: '0 -8px' }}>X / Twitter ↗</a>
+        <div style={{ marginTop: 28, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, fontFamily: fonts.display, fontSize: 14 }}>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            <a className="link-uline" href="https://x.com/kicksnare12" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(249,254,253,0.7)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', minHeight: 44, padding: '0 8px', margin: '0 -8px' }}>X / Twitter ↗</a>
+            <a className="link-uline" href="/privacy" style={{ color: 'rgba(249,254,253,0.7)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', minHeight: 44, padding: '0 8px' }}>Privacy</a>
+          </div>
           <a className="link-uline" href="#work" style={{ color: 'rgba(249,254,253,0.7)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', minHeight: 44, padding: '0 8px', margin: '0 -8px' }}>Back to top ↑</a>
         </div>
       </div>

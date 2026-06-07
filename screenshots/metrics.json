@@ -1,0 +1,1720 @@
+{
+  "desktop": {
+    "title": "Kicksnare \u2014 Websites and digital products that grow revenue",
+    "h1": "We build the \ngrowth tools, web apps, landing pages, and digital products\ngrowth tools\nweb apps\nlanding pages\ndigital products\n you need to grow.",
+    "h1Rect": {
+      "top": 208,
+      "left": 240,
+      "width": 793,
+      "height": 495
+    },
+    "h2s": [
+      "We'll record a 5-minute video audit of your site or product.",
+      "Most small business websites convert less than 1 in 100 visitors.",
+      "Three recent shipped projects.",
+      "Most agencies take six months. We're done in six weeks.",
+      "How we work.",
+      "Request your free audit."
+    ],
+    "ctaButtons": [
+      {
+        "text": "Work",
+        "tag": "A",
+        "top": 20,
+        "left": 856,
+        "width": 36,
+        "height": 44
+      },
+      {
+        "text": "Audit",
+        "tag": "A",
+        "top": 20,
+        "left": 928,
+        "width": 36,
+        "height": 44
+      },
+      {
+        "text": "Contact",
+        "tag": "A",
+        "top": 20,
+        "left": 1077,
+        "width": 53,
+        "height": 44
+      },
+      {
+        "text": "Free audit",
+        "tag": "A",
+        "top": 21,
+        "left": 1526,
+        "width": 130,
+        "height": 43
+      },
+      {
+        "text": "Request free audit",
+        "tag": "A",
+        "top": 743,
+        "left": 240,
+        "width": 224,
+        "height": 58
+      },
+      {
+        "text": "See selected work",
+        "tag": "A",
+        "top": 750,
+        "left": 478,
+        "width": 157,
+        "height": 44
+      },
+      {
+        "text": "03\nStudio Mara\nBOOKING APP \u00b7 2024 \u2192",
+        "tag": "A",
+        "top": 405,
+        "left": 1113,
+        "width": 567,
+        "height": 62
+      },
+      {
+        "text": "Request audit via DM",
+        "tag": "A",
+        "top": 1758,
+        "left": 938,
+        "width": 245,
+        "height": 58
+      },
+      {
+        "text": "CASE 01\nPRODUCT \u00b7 4:3\nWEB DESIGN \u00b7 DEV\n2025 \u00b7 6 WKS\nHalocrat",
+        "tag": "BUTTON",
+        "top": 2755,
+        "left": 296,
+        "width": 424,
+        "height": 665
+      },
+      {
+        "text": "CASE 03\nSCREENS \u00b7 9:19\nAPP DESIGN \u00b7 SEO\n2024 \u00b7 9 WKS\nStudio ",
+        "tag": "BUTTON",
+        "top": 2755,
+        "left": 1200,
+        "width": 424,
+        "height": 665
+      },
+      {
+        "text": "PRIMARY \u00b7 DMS OPEN\n@kicksnare12\nDM your URL to @kicksnare12 ",
+        "tag": "A",
+        "top": 5672,
+        "left": 296,
+        "width": 805,
+        "height": 280
+      },
+      {
+        "text": "EMAIL\nContact us",
+        "tag": "BUTTON",
+        "top": 5672,
+        "left": 1121,
+        "width": 503,
+        "height": 106
+      },
+      {
+        "text": "AVAILABILITY\nBook a slot",
+        "tag": "A",
+        "top": 5792,
+        "left": 1121,
+        "width": 503,
+        "height": 106
+      }
+    ],
+    "navRect": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 85,
+      "top": 0,
+      "right": 1920,
+      "bottom": 85,
+      "left": 0
+    },
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?fm=webp&fit=crop&w=",
+        "alt": "",
+        "naturalWidth": 456,
+        "naturalHeight": 302,
+        "loading": "lazy"
+      }
+    ],
+    "fonts": [
+      "Geist, system-ui, sans-serif",
+      "\"Instrument Serif\", serif",
+      "\"Space Grotesk\", system-ui, sans-serif",
+      "\"Space Grotesk\", \"Space Grotesk Fallback\", system-ui, sans-serif"
+    ],
+    "bodyFontSize": "16px",
+    "metaViewport": "width=device-width, initial-scale=1",
+    "allLinks": [
+      {
+        "text": "Work",
+        "width": 36,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Audit",
+        "width": 36,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "About",
+        "width": 41,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Contact",
+        "width": 53,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Free audit",
+        "width": 130,
+        "height": 43,
+        "top": 21
+      },
+      {
+        "text": "Request free audit",
+        "width": 224,
+        "height": 58,
+        "top": 743
+      },
+      {
+        "text": "See selected work",
+        "width": 157,
+        "height": 44,
+        "top": 750
+      },
+      {
+        "text": "01\nHalocrate\nB2B SAAS \u00b7 2025 \u2192",
+        "width": 567,
+        "height": 62,
+        "top": 282
+      },
+      {
+        "text": "02\nNorthbeam DTC\nPAID GROWTH \u00b7 2025 \u2192",
+        "width": 567,
+        "height": 62,
+        "top": 344
+      },
+      {
+        "text": "03\nStudio Mara\nBOOKING APP \u00b7 2024 \u2192",
+        "width": 567,
+        "height": 62,
+        "top": 405
+      },
+      {
+        "text": "04\nLattice OS\nWEB DESIGN \u00b7 2024 \u00b7",
+        "width": 567,
+        "height": 62,
+        "top": 467
+      },
+      {
+        "text": "05\nVela Mobility\nBRAND + SITE \u00b7 2024 \u00b7",
+        "width": 567,
+        "height": 63,
+        "top": 528
+      },
+      {
+        "text": "Request audit via DM",
+        "width": 245,
+        "height": 58,
+        "top": 1758
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2005
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2005
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2005
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2005
+      },
+      {
+        "text": "Full case studies on request \u2192",
+        "width": 217,
+        "height": 44,
+        "top": 2671
+      },
+      {
+        "text": "CASE 01\nPRODUCT \u00b7 4:3\nWEB DESIGN \u00b7 DEV\n2",
+        "width": 424,
+        "height": 665,
+        "top": 2755
+      },
+      {
+        "text": "CASE 02\nDASHBOARD \u00b7 16:10\nPAID GROWTH \u00b7 ",
+        "width": 424,
+        "height": 665,
+        "top": 2755
+      },
+      {
+        "text": "CASE 03\nSCREENS \u00b7 9:19\nAPP DESIGN \u00b7 SEO\n",
+        "width": 424,
+        "height": 665,
+        "top": 2755
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4809
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4809
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4809
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4809
+      },
+      {
+        "text": "PRIMARY \u00b7 DMS OPEN\n@kicksnare12\nDM your ",
+        "width": 805,
+        "height": 280,
+        "top": 5672
+      },
+      {
+        "text": "EMAIL\nContact us",
+        "width": 503,
+        "height": 106,
+        "top": 5672
+      },
+      {
+        "text": "AVAILABILITY\nBook a slot",
+        "width": 503,
+        "height": 106,
+        "top": 5792
+      },
+      {
+        "text": "X / Twitter \u2197",
+        "width": 95,
+        "height": 44,
+        "top": 6294
+      },
+      {
+        "text": "Back to top \u2191",
+        "width": 106,
+        "height": 44,
+        "top": 6294
+      },
+      {
+        "text": "Let's talk",
+        "width": 1920,
+        "height": 52,
+        "top": 1080
+      }
+    ],
+    "smallTouchTargets": [
+      {
+        "text": "Work",
+        "width": 36,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Audit",
+        "width": 36,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "About",
+        "width": 41,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Contact",
+        "width": 53,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Free audit",
+        "width": 130,
+        "height": 43,
+        "top": 21
+      },
+      {
+        "text": "See selected work",
+        "width": 157,
+        "height": 44,
+        "top": 750
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2005
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2005
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2005
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2005
+      },
+      {
+        "text": "Full case studies on request \u2192",
+        "width": 217,
+        "height": 44,
+        "top": 2671
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4809
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4809
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4809
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4809
+      },
+      {
+        "text": "X / Twitter \u2197",
+        "width": 95,
+        "height": 44,
+        "top": 6294
+      },
+      {
+        "text": "Back to top \u2191",
+        "width": 106,
+        "height": 44,
+        "top": 6294
+      }
+    ],
+    "documentHeight": 6394,
+    "viewportWidth": 1920,
+    "viewportHeight": 1080,
+    "hasHorizontalScroll": false,
+    "scrollWidth": 1920,
+    "viewport": {
+      "name": "desktop",
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "laptop": {
+    "title": "Kicksnare \u2014 Websites and digital products that grow revenue",
+    "h1": "We build the \ngrowth tools, web apps, landing pages, and digital products\ngrowth tools\nweb apps\nlanding pages\ndigital products\n you need to grow.",
+    "h1Rect": {
+      "top": 208,
+      "left": 0,
+      "width": 750,
+      "height": 448
+    },
+    "h2s": [
+      "We'll record a 5-minute video audit of your site or product.",
+      "Most small business websites convert less than 1 in 100 visitors.",
+      "Three recent shipped projects.",
+      "Most agencies take six months. We're done in six weeks.",
+      "How we work.",
+      "Request your free audit."
+    ],
+    "ctaButtons": [
+      {
+        "text": "Work",
+        "tag": "A",
+        "top": 20,
+        "left": 579,
+        "width": 36,
+        "height": 44
+      },
+      {
+        "text": "Audit",
+        "tag": "A",
+        "top": 20,
+        "left": 651,
+        "width": 36,
+        "height": 44
+      },
+      {
+        "text": "Contact",
+        "tag": "A",
+        "top": 20,
+        "left": 800,
+        "width": 53,
+        "height": 44
+      },
+      {
+        "text": "Free audit",
+        "tag": "A",
+        "top": 21,
+        "left": 1212,
+        "width": 130,
+        "height": 43
+      },
+      {
+        "text": "Request free audit",
+        "tag": "A",
+        "top": 716,
+        "left": 0,
+        "width": 224,
+        "height": 58
+      },
+      {
+        "text": "See selected work",
+        "tag": "A",
+        "top": 723,
+        "left": 238,
+        "width": 157,
+        "height": 44
+      },
+      {
+        "text": "03\nStudio Mara\nBOOKING APP \u00b7 2024 \u2192",
+        "tag": "A",
+        "top": 405,
+        "left": 830,
+        "width": 536,
+        "height": 62
+      },
+      {
+        "text": "Request audit via DM",
+        "tag": "A",
+        "top": 1701,
+        "left": 665,
+        "width": 245,
+        "height": 58
+      },
+      {
+        "text": "CASE 01\nPRODUCT \u00b7 4:3\nWEB DESIGN \u00b7 DEV\n2025 \u00b7 6 WKS\nHalocrat",
+        "tag": "BUTTON",
+        "top": 2866,
+        "left": 56,
+        "width": 399,
+        "height": 634
+      },
+      {
+        "text": "CASE 03\nSCREENS \u00b7 9:19\nAPP DESIGN \u00b7 SEO\n2024 \u00b7 9 WKS\nStudio ",
+        "tag": "BUTTON",
+        "top": 2866,
+        "left": 911,
+        "width": 399,
+        "height": 634
+      },
+      {
+        "text": "PRIMARY \u00b7 DMS OPEN\n@kicksnare12\nDM your URL to @kicksnare12 ",
+        "tag": "A",
+        "top": 5753,
+        "left": 56,
+        "width": 759,
+        "height": 280
+      },
+      {
+        "text": "EMAIL\nContact us",
+        "tag": "BUTTON",
+        "top": 5753,
+        "left": 835,
+        "width": 475,
+        "height": 106
+      },
+      {
+        "text": "AVAILABILITY\nBook a slot",
+        "tag": "A",
+        "top": 5873,
+        "left": 835,
+        "width": 475,
+        "height": 106
+      }
+    ],
+    "navRect": {
+      "x": 0,
+      "y": 0,
+      "width": 1366,
+      "height": 85,
+      "top": 0,
+      "right": 1366,
+      "bottom": 85,
+      "left": 0
+    },
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?fm=webp&fit=crop&w=",
+        "alt": "",
+        "naturalWidth": 456,
+        "naturalHeight": 302,
+        "loading": "lazy"
+      }
+    ],
+    "fonts": [
+      "Geist, system-ui, sans-serif",
+      "\"Instrument Serif\", serif",
+      "\"Space Grotesk\", system-ui, sans-serif",
+      "\"Space Grotesk\", \"Space Grotesk Fallback\", system-ui, sans-serif"
+    ],
+    "bodyFontSize": "16px",
+    "metaViewport": "width=device-width, initial-scale=1",
+    "allLinks": [
+      {
+        "text": "Work",
+        "width": 36,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Audit",
+        "width": 36,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "About",
+        "width": 41,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Contact",
+        "width": 53,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Free audit",
+        "width": 130,
+        "height": 43,
+        "top": 21
+      },
+      {
+        "text": "Request free audit",
+        "width": 224,
+        "height": 58,
+        "top": 716
+      },
+      {
+        "text": "See selected work",
+        "width": 157,
+        "height": 44,
+        "top": 723
+      },
+      {
+        "text": "01\nHalocrate\nB2B SAAS \u00b7 2025 \u2192",
+        "width": 536,
+        "height": 62,
+        "top": 282
+      },
+      {
+        "text": "02\nNorthbeam DTC\nPAID GROWTH \u00b7 2025 \u2192",
+        "width": 536,
+        "height": 62,
+        "top": 344
+      },
+      {
+        "text": "03\nStudio Mara\nBOOKING APP \u00b7 2024 \u2192",
+        "width": 536,
+        "height": 62,
+        "top": 405
+      },
+      {
+        "text": "04\nLattice OS\nWEB DESIGN \u00b7 2024 \u00b7",
+        "width": 536,
+        "height": 62,
+        "top": 467
+      },
+      {
+        "text": "05\nVela Mobility\nBRAND + SITE \u00b7 2024 \u00b7",
+        "width": 536,
+        "height": 63,
+        "top": 528
+      },
+      {
+        "text": "Request audit via DM",
+        "width": 245,
+        "height": 58,
+        "top": 1701
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 1948
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 1948
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 1948
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2292
+      },
+      {
+        "text": "Full case studies on request \u2192",
+        "width": 217,
+        "height": 44,
+        "top": 2782
+      },
+      {
+        "text": "CASE 01\nPRODUCT \u00b7 4:3\nWEB DESIGN \u00b7 DEV\n2",
+        "width": 399,
+        "height": 634,
+        "top": 2866
+      },
+      {
+        "text": "CASE 02\nDASHBOARD \u00b7 16:10\nPAID GROWTH \u00b7 ",
+        "width": 399,
+        "height": 634,
+        "top": 2866
+      },
+      {
+        "text": "CASE 03\nSCREENS \u00b7 9:19\nAPP DESIGN \u00b7 SEO\n",
+        "width": 399,
+        "height": 634,
+        "top": 2866
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4890
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4890
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4890
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4890
+      },
+      {
+        "text": "PRIMARY \u00b7 DMS OPEN\n@kicksnare12\nDM your ",
+        "width": 759,
+        "height": 280,
+        "top": 5753
+      },
+      {
+        "text": "EMAIL\nContact us",
+        "width": 475,
+        "height": 106,
+        "top": 5753
+      },
+      {
+        "text": "AVAILABILITY\nBook a slot",
+        "width": 475,
+        "height": 106,
+        "top": 5873
+      },
+      {
+        "text": "X / Twitter \u2197",
+        "width": 95,
+        "height": 44,
+        "top": 6339
+      },
+      {
+        "text": "Back to top \u2191",
+        "width": 106,
+        "height": 44,
+        "top": 6339
+      },
+      {
+        "text": "Let's talk",
+        "width": 1366,
+        "height": 52,
+        "top": 768
+      }
+    ],
+    "smallTouchTargets": [
+      {
+        "text": "Work",
+        "width": 36,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Audit",
+        "width": 36,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "About",
+        "width": 41,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Contact",
+        "width": 53,
+        "height": 44,
+        "top": 20
+      },
+      {
+        "text": "Free audit",
+        "width": 130,
+        "height": 43,
+        "top": 21
+      },
+      {
+        "text": "See selected work",
+        "width": 157,
+        "height": 44,
+        "top": 723
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 1948
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 1948
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 1948
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2292
+      },
+      {
+        "text": "Full case studies on request \u2192",
+        "width": 217,
+        "height": 44,
+        "top": 2782
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4890
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4890
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4890
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 4890
+      },
+      {
+        "text": "X / Twitter \u2197",
+        "width": 95,
+        "height": 44,
+        "top": 6339
+      },
+      {
+        "text": "Back to top \u2191",
+        "width": 106,
+        "height": 44,
+        "top": 6339
+      }
+    ],
+    "documentHeight": 6439,
+    "viewportWidth": 1366,
+    "viewportHeight": 768,
+    "hasHorizontalScroll": false,
+    "scrollWidth": 1366,
+    "viewport": {
+      "name": "laptop",
+      "width": 1366,
+      "height": 768
+    }
+  },
+  "tablet": {
+    "title": "Kicksnare \u2014 Websites and digital products that grow revenue",
+    "h1": "We build the \ngrowth tools, web apps, landing pages, and digital products\ngrowth tools\nweb apps\nlanding pages\ndigital products\n you need to grow.",
+    "h1Rect": {
+      "top": 196,
+      "left": 0,
+      "width": 401,
+      "height": 252
+    },
+    "h2s": [
+      "We'll record a 5-minute video audit of your site or product.",
+      "Most small business websites convert less than 1 in 100 visitors.",
+      "Three recent shipped projects.",
+      "Most agencies take six months. We're done in six weeks.",
+      "How we work.",
+      "Request your free audit."
+    ],
+    "ctaButtons": [
+      {
+        "text": "Work",
+        "tag": "A",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Audit",
+        "tag": "A",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Contact",
+        "tag": "A",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Free audit",
+        "tag": "A",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Request free audit",
+        "tag": "A",
+        "top": 488,
+        "left": 0,
+        "width": 224,
+        "height": 58
+      },
+      {
+        "text": "See selected work",
+        "tag": "A",
+        "top": 495,
+        "left": 238,
+        "width": 157,
+        "height": 44
+      },
+      {
+        "text": "03\nStudio Mara\nBOOKING APP \u00b7 2024 \u2192",
+        "tag": "A",
+        "top": 422,
+        "left": 481,
+        "width": 287,
+        "height": 90
+      },
+      {
+        "text": "Request audit via DM",
+        "tag": "A",
+        "top": 1590,
+        "left": 393,
+        "width": 245,
+        "height": 58
+      },
+      {
+        "text": "CASE 01\nPRODUCT \u00b7 4:3\nWEB DESIGN \u00b7 DEV\n2025 \u00b7 6 WKS\nHalocrat",
+        "tag": "BUTTON",
+        "top": 2821,
+        "left": 24,
+        "width": 350,
+        "height": 597
+      },
+      {
+        "text": "CASE 03\nSCREENS \u00b7 9:19\nAPP DESIGN \u00b7 SEO\n2024 \u00b7 9 WKS\nStudio ",
+        "tag": "BUTTON",
+        "top": 3438,
+        "left": 24,
+        "width": 350,
+        "height": 597
+      },
+      {
+        "text": "Contact us",
+        "tag": "BUTTON",
+        "top": 6464,
+        "left": 24,
+        "width": 720,
+        "height": 60
+      },
+      {
+        "text": "Book a slot \u2197",
+        "tag": "A",
+        "top": 6544,
+        "left": 402,
+        "width": 109,
+        "height": 44
+      }
+    ],
+    "navRect": {
+      "x": 0,
+      "y": 0,
+      "width": 768,
+      "height": 73,
+      "top": 0,
+      "right": 768,
+      "bottom": 73,
+      "left": 0
+    },
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?fm=webp&fit=crop&w=",
+        "alt": "",
+        "naturalWidth": 456,
+        "naturalHeight": 302,
+        "loading": "lazy"
+      }
+    ],
+    "fonts": [
+      "Geist, system-ui, sans-serif",
+      "\"Instrument Serif\", serif",
+      "\"Space Grotesk\", system-ui, sans-serif",
+      "\"Space Grotesk\", \"Space Grotesk Fallback\", system-ui, sans-serif"
+    ],
+    "bodyFontSize": "16px",
+    "metaViewport": "width=device-width, initial-scale=1",
+    "allLinks": [
+      {
+        "text": "",
+        "width": 38,
+        "height": 32,
+        "top": 20
+      },
+      {
+        "text": "Request free audit",
+        "width": 224,
+        "height": 58,
+        "top": 488
+      },
+      {
+        "text": "See selected work",
+        "width": 157,
+        "height": 44,
+        "top": 495
+      },
+      {
+        "text": "01\nHalocrate\nB2B SAAS \u00b7 2025 \u2192",
+        "width": 287,
+        "height": 62,
+        "top": 270
+      },
+      {
+        "text": "02\nNorthbeam DTC\nPAID GROWTH \u00b7 2025 \u2192",
+        "width": 287,
+        "height": 90,
+        "top": 332
+      },
+      {
+        "text": "03\nStudio Mara\nBOOKING APP \u00b7 2024 \u2192",
+        "width": 287,
+        "height": 90,
+        "top": 422
+      },
+      {
+        "text": "04\nLattice OS\nWEB DESIGN \u00b7 2024 \u00b7",
+        "width": 287,
+        "height": 62,
+        "top": 512
+      },
+      {
+        "text": "05\nVela Mobility\nBRAND + SITE \u00b7 2024 \u00b7",
+        "width": 287,
+        "height": 91,
+        "top": 573
+      },
+      {
+        "text": "Request audit via DM",
+        "width": 245,
+        "height": 58,
+        "top": 1590
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 1837
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 1837
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2226
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2226
+      },
+      {
+        "text": "Full case studies on request \u2192",
+        "width": 217,
+        "height": 44,
+        "top": 2737
+      },
+      {
+        "text": "CASE 01\nPRODUCT \u00b7 4:3\nWEB DESIGN \u00b7 DEV\n2",
+        "width": 350,
+        "height": 597,
+        "top": 2821
+      },
+      {
+        "text": "CASE 02\nDASHBOARD \u00b7 16:10\nPAID GROWTH \u00b7 ",
+        "width": 350,
+        "height": 573,
+        "top": 2821
+      },
+      {
+        "text": "CASE 03\nSCREENS \u00b7 9:19\nAPP DESIGN \u00b7 SEO\n",
+        "width": 350,
+        "height": 597,
+        "top": 3438
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 5422
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 5422
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 5422
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 5743
+      },
+      {
+        "text": "Contact us",
+        "width": 720,
+        "height": 60,
+        "top": 6464
+      },
+      {
+        "text": "DM @kicksnare \u2197",
+        "width": 136,
+        "height": 44,
+        "top": 6544
+      },
+      {
+        "text": "Book a slot \u2197",
+        "width": 109,
+        "height": 44,
+        "top": 6544
+      },
+      {
+        "text": "X / Twitter \u2197",
+        "width": 95,
+        "height": 44,
+        "top": 6813
+      },
+      {
+        "text": "Back to top \u2191",
+        "width": 106,
+        "height": 44,
+        "top": 6813
+      },
+      {
+        "text": "Let's talk",
+        "width": 768,
+        "height": 52,
+        "top": 1024
+      }
+    ],
+    "smallTouchTargets": [
+      {
+        "text": "",
+        "width": 38,
+        "height": 32,
+        "top": 20
+      },
+      {
+        "text": "See selected work",
+        "width": 157,
+        "height": 44,
+        "top": 495
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 1837
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 1837
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2226
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2226
+      },
+      {
+        "text": "Full case studies on request \u2192",
+        "width": 217,
+        "height": 44,
+        "top": 2737
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 5422
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 5422
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 5422
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 5743
+      },
+      {
+        "text": "DM @kicksnare \u2197",
+        "width": 136,
+        "height": 44,
+        "top": 6544
+      },
+      {
+        "text": "Book a slot \u2197",
+        "width": 109,
+        "height": 44,
+        "top": 6544
+      },
+      {
+        "text": "X / Twitter \u2197",
+        "width": 95,
+        "height": 44,
+        "top": 6813
+      },
+      {
+        "text": "Back to top \u2191",
+        "width": 106,
+        "height": 44,
+        "top": 6813
+      }
+    ],
+    "documentHeight": 6913,
+    "viewportWidth": 768,
+    "viewportHeight": 1024,
+    "hasHorizontalScroll": false,
+    "scrollWidth": 768,
+    "viewport": {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024
+    }
+  },
+  "mobile": {
+    "title": "Kicksnare \u2014 Websites and digital products that grow revenue",
+    "h1": "We build the \ngrowth tools, web apps, landing pages, and digital products\ngrowth tools\nweb apps\nlanding pages\ndigital products\n you need to grow.",
+    "h1Rect": {
+      "top": 196,
+      "left": 0,
+      "width": 389,
+      "height": 247
+    },
+    "h2s": [
+      "We'll record a 5-minute video audit of your site or product.",
+      "Most small business websites convert less than 1 in 100 visitors.",
+      "Three recent shipped projects.",
+      "Most agencies take six months. We're done in six weeks.",
+      "How we work.",
+      "Request your free audit."
+    ],
+    "ctaButtons": [
+      {
+        "text": "Work",
+        "tag": "A",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Audit",
+        "tag": "A",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Contact",
+        "tag": "A",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Free audit",
+        "tag": "A",
+        "top": 0,
+        "left": 0,
+        "width": 0,
+        "height": 0
+      },
+      {
+        "text": "Request free audit",
+        "tag": "A",
+        "top": 482,
+        "left": 0,
+        "width": 224,
+        "height": 58
+      },
+      {
+        "text": "See selected work",
+        "tag": "A",
+        "top": 489,
+        "left": 238,
+        "width": 157,
+        "height": 44
+      },
+      {
+        "text": "03\nStudio Mara\nBOOKING APP \u00b7 2024 \u2192",
+        "tag": "A",
+        "top": 986,
+        "left": 0,
+        "width": 389,
+        "height": 62
+      },
+      {
+        "text": "Request audit via DM",
+        "tag": "A",
+        "top": 2371,
+        "left": 0,
+        "width": 245,
+        "height": 58
+      },
+      {
+        "text": "CASE 01\nPRODUCT \u00b7 4:3\nWEB DESIGN \u00b7 DEV\n2025 \u00b7 6 WKS\nHalocrat",
+        "tag": "BUTTON",
+        "top": 3850,
+        "left": 24,
+        "width": 327,
+        "height": 568
+      },
+      {
+        "text": "CASE 03\nSCREENS \u00b7 9:19\nAPP DESIGN \u00b7 SEO\n2024 \u00b7 9 WKS\nStudio ",
+        "tag": "BUTTON",
+        "top": 5002,
+        "left": 24,
+        "width": 327,
+        "height": 568
+      },
+      {
+        "text": "Contact us",
+        "tag": "BUTTON",
+        "top": 9359,
+        "left": 24,
+        "width": 327,
+        "height": 60
+      },
+      {
+        "text": "Book a slot \u2197",
+        "tag": "A",
+        "top": 9439,
+        "left": 205,
+        "width": 109,
+        "height": 44
+      }
+    ],
+    "navRect": {
+      "x": 0,
+      "y": 0,
+      "width": 375,
+      "height": 73,
+      "top": 0,
+      "right": 375,
+      "bottom": 73,
+      "left": 0
+    },
+    "images": [
+      {
+        "src": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?fm=webp&fit=crop&w=",
+        "alt": "",
+        "naturalWidth": 456,
+        "naturalHeight": 302,
+        "loading": "lazy"
+      }
+    ],
+    "fonts": [
+      "Geist, system-ui, sans-serif",
+      "\"Instrument Serif\", serif",
+      "\"Space Grotesk\", system-ui, sans-serif",
+      "\"Space Grotesk\", \"Space Grotesk Fallback\", system-ui, sans-serif"
+    ],
+    "bodyFontSize": "16px",
+    "metaViewport": "width=device-width, initial-scale=1",
+    "allLinks": [
+      {
+        "text": "",
+        "width": 38,
+        "height": 32,
+        "top": 20
+      },
+      {
+        "text": "Request free audit",
+        "width": 224,
+        "height": 58,
+        "top": 482
+      },
+      {
+        "text": "See selected work",
+        "width": 157,
+        "height": 44,
+        "top": 489
+      },
+      {
+        "text": "01\nHalocrate\nB2B SAAS \u00b7 2025 \u2192",
+        "width": 389,
+        "height": 62,
+        "top": 863
+      },
+      {
+        "text": "02\nNorthbeam DTC\nPAID GROWTH \u00b7 2025 \u2192",
+        "width": 389,
+        "height": 62,
+        "top": 924
+      },
+      {
+        "text": "03\nStudio Mara\nBOOKING APP \u00b7 2024 \u2192",
+        "width": 389,
+        "height": 62,
+        "top": 986
+      },
+      {
+        "text": "04\nLattice OS\nWEB DESIGN \u00b7 2024 \u00b7",
+        "width": 389,
+        "height": 62,
+        "top": 1047
+      },
+      {
+        "text": "05\nVela Mobility\nBRAND + SITE \u00b7 2024 \u00b7",
+        "width": 389,
+        "height": 63,
+        "top": 1109
+      },
+      {
+        "text": "Request audit via DM",
+        "width": 245,
+        "height": 58,
+        "top": 2371
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2908
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 3055
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 3203
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 3352
+      },
+      {
+        "text": "Full case studies on request \u2192",
+        "width": 109,
+        "height": 63,
+        "top": 3747
+      },
+      {
+        "text": "CASE 01\nPRODUCT \u00b7 4:3\nWEB DESIGN \u00b7 DEV\n2",
+        "width": 327,
+        "height": 568,
+        "top": 3850
+      },
+      {
+        "text": "CASE 02\nDASHBOARD \u00b7 16:10\nPAID GROWTH \u00b7 ",
+        "width": 327,
+        "height": 544,
+        "top": 4438
+      },
+      {
+        "text": "CASE 03\nSCREENS \u00b7 9:19\nAPP DESIGN \u00b7 SEO\n",
+        "width": 327,
+        "height": 568,
+        "top": 5002
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 7753
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 8051
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 8331
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 8611
+      },
+      {
+        "text": "Contact us",
+        "width": 327,
+        "height": 60,
+        "top": 9359
+      },
+      {
+        "text": "DM @kicksnare \u2197",
+        "width": 136,
+        "height": 44,
+        "top": 9439
+      },
+      {
+        "text": "Book a slot \u2197",
+        "width": 109,
+        "height": 44,
+        "top": 9439
+      },
+      {
+        "text": "X / Twitter \u2197",
+        "width": 95,
+        "height": 44,
+        "top": 9672
+      },
+      {
+        "text": "Back to top \u2191",
+        "width": 106,
+        "height": 44,
+        "top": 9672
+      },
+      {
+        "text": "Let's talk",
+        "width": 375,
+        "height": 52,
+        "top": 812
+      }
+    ],
+    "smallTouchTargets": [
+      {
+        "text": "",
+        "width": 38,
+        "height": 32,
+        "top": 20
+      },
+      {
+        "text": "See selected work",
+        "width": 157,
+        "height": 44,
+        "top": 489
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 2908
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 3055
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 3203
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 3352
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 7753
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 8051
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 8331
+      },
+      {
+        "text": "",
+        "width": 20,
+        "height": 20,
+        "top": 8611
+      },
+      {
+        "text": "DM @kicksnare \u2197",
+        "width": 136,
+        "height": 44,
+        "top": 9439
+      },
+      {
+        "text": "Book a slot \u2197",
+        "width": 109,
+        "height": 44,
+        "top": 9439
+      },
+      {
+        "text": "X / Twitter \u2197",
+        "width": 95,
+        "height": 44,
+        "top": 9672
+      },
+      {
+        "text": "Back to top \u2191",
+        "width": 106,
+        "height": 44,
+        "top": 9672
+      }
+    ],
+    "documentHeight": 9772,
+    "viewportWidth": 375,
+    "viewportHeight": 812,
+    "hasHorizontalScroll": true,
+    "scrollWidth": 395,
+    "viewport": {
+      "name": "mobile",
+      "width": 375,
+      "height": 812
+    }
+  }
+}

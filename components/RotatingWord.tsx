@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 
 const WORDS_REVERSED = ['growth tools', 'web apps', 'landing pages', 'digital products'];
+const FALLBACK = WORDS_REVERSED[WORDS_REVERSED.length - 1];
 
 interface Props {
   serif: string;
@@ -12,9 +13,13 @@ interface Props {
 export default function RotatingWord({ serif }: Props) {
   const stackRef = useRef<HTMLSpanElement>(null);
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [mounted, setMounted] = useState(false);
   const [dims, setDims] = useState<{ width: number; height: number } | null>(null);
 
+  useEffect(() => { setMounted(true); }, []);
+
   useLayoutEffect(() => {
+    if (!mounted) return;
     const spans = wordRefs.current.filter(Boolean) as HTMLSpanElement[];
     if (!spans.length) return;
 
@@ -28,7 +33,7 @@ export default function RotatingWord({ serif }: Props) {
     });
 
     setDims({ width: maxWidth, height: wordHeight });
-  }, []);
+  }, [mounted]);
 
   useEffect(() => {
     if (!dims || !stackRef.current) return;
@@ -58,18 +63,15 @@ export default function RotatingWord({ serif }: Props) {
     whiteSpace: 'nowrap',
   };
 
+  // SSR: single word, no duplication — H1 reads cleanly for crawlers
+  if (!mounted) {
+    return <span style={wordStyle}>{FALLBACK}</span>;
+  }
+
+  // Client: sr-only label (single word) + animated stack
   return (
     <>
-      <span style={{
-        position: 'absolute',
-        width: 1,
-        height: 1,
-        overflow: 'hidden',
-        clip: 'rect(0, 0, 0, 0)',
-        whiteSpace: 'nowrap',
-      }}>
-        {WORDS_REVERSED.slice(0, -1).join(', ')}, and {WORDS_REVERSED[WORDS_REVERSED.length - 1]}
-      </span>
+      <span className="sr-only">{FALLBACK}</span>
       <span
         aria-hidden="true"
         style={{

@@ -1,0 +1,30 @@
+# Kicksnare Digital
+
+> A small team of specialists shipping websites, digital products, and growth experiments that turn traffic into revenue. No long-term retainers.
+
+## About
+
+Kicksnare Digital is a UK-based web design and growth agency founded by OO, a product manager with seven years of retail experience. The agency builds fast-turnaround websites and runs growth experiments for small service businesses — consultants, coaches, local professionals — who need a professional online presence that generates enquiries.
+
+## Services
+
+- **The 48-Hour Launch Site**: Professional 5-page website designed and built in 48 hours, including all copywriting, mobile optimisation, and SEO setup.
+- **SEO & Google Business Profile Setup**: Search engine optimisation and Google Business Profile configuration for local visibility.
+- **Hosting & Maintenance**: Ongoing hosting, maintenance, and one update per month.
+
+## Case Studies
+
+- **Halocrate** (B2B SaaS / Devtools): -41% bounce rate on /pricing, 2.6x demo bookings.
+- **Northbeam DTC** (DTC / Apparel): 3.1x ROAS, -34% CAC.
+- **Studio Mara** (Wellness / Multi-location): -26% no-shows, +38% local organic traffic.
+
+## Contact
+
+- Website: https://www.kicksnare.digital
+- Email: hi@kicksnare.studio
+- X / Twitter: https://x.com/kicksnare12
+- Booking: https://proj-astro-seven.vercel.app/book/kicksnare
+
+## Guarantee
+
+If you don't love it, you don't pay. No questions.
