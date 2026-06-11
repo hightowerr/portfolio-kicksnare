@@ -17,7 +17,7 @@ Read these files **in order** before implementing or making any architectural de
 
 Update `docs/context/progress-tracker.md` after each meaningful implementation change. If implementation changes the architecture, scope, or standards in the context files, update the relevant file before continuing.
 
-The design system (CSS tokens, component previews, JSX examples) lives in `docs/context/design-system/project/`. The full visual reference prototype is `docs/context/design-system/project/ui_kits/marketing/Momentum Capital.html`.
+The design system (CSS tokens, component previews, JSX examples) lives in `docs/context/design-system/project/`.
 
 ---
 
