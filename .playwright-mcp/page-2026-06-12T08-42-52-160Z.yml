@@ -1,0 +1,122 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "kicksnare" [ref=e6]
+        - generic [ref=e12]: kicksnare
+        - generic [ref=e13]: digital
+      - navigation "Main" [ref=e14]:
+        - link "← Home" [ref=e15] [cursor=pointer]:
+          - /url: /
+      - link "Free audit" [ref=e17] [cursor=pointer]:
+        - /url: /#audit
+        - text: Free audit
+        - img [ref=e19]
+  - main [ref=e21]:
+    - generic [ref=e23]:
+      - generic [ref=e25]: (01) The problem
+      - generic [ref=e26]:
+        - heading "Nobody in the dark wants to read more." [level=1] [ref=e28]
+        - paragraph [ref=e30]: "JJ runs Evoltage UK, a 24-hour electrician in Loughborough. When someone loses power at 9pm, they reach for their phone and search for an electrician. They land on JJ's site. The main call to action read: “Read more...” Nobody in the dark wants to read more. They want a phone number."
+        - img [ref=e34]:
+          - generic [ref=e46]: No hook
+          - generic [ref=e47]: ↑ fold
+          - generic [ref=e51]: Weak CTA
+          - generic [ref=e55]: Phone buried
+        - generic [ref=e57]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: 10/100
+            - generic [ref=e60]: SEO score
+            - generic [ref=e61]: Google Lighthouse
+          - generic [ref=e62]:
+            - generic [ref=e63]: 15/40
+            - generic [ref=e64]: 5-Second Test
+            - generic [ref=e65]: Original site
+          - generic [ref=e66]:
+            - generic [ref=e67]: 15s
+            - generic [ref=e68]: Phone number
+            - generic [ref=e69]: Seconds to find
+    - generic [ref=e71]:
+      - generic [ref=e73]: (02) What we built
+      - generic [ref=e74]:
+        - heading "The site we shipped." [level=2] [ref=e76]
+        - generic [ref=e78]:
+          - generic [ref=e79]:
+            - generic [ref=e80]: Before
+            - img "Old Evoltage UK mobile homepage — generic headline, no phone number visible, weak Read more CTA" [ref=e84]
+          - generic [ref=e86]:
+            - generic [ref=e87]: After
+            - img "Redesigned Evoltage UK mobile homepage — prominent Call 01509 421 600 button, Get a free quote form, trust badges, sticky bottom bar" [ref=e91]
+        - list [ref=e94]:
+          - listitem [ref=e95]:
+            - img [ref=e97]
+            - text: Phone number one tap away on every page
+          - listitem [ref=e99]:
+            - img [ref=e101]
+            - text: 13 pages so Google finds you for 'electrician Loughborough'
+          - listitem [ref=e103]:
+            - img [ref=e105]
+            - text: Trust badges visible in 3 seconds — NAPIT, JIB, insured, Checkatrade 5.0
+          - listitem [ref=e107]:
+            - img [ref=e109]
+            - text: Real job photos, not stock
+          - listitem [ref=e111]:
+            - img [ref=e113]
+            - text: Built in 3 days
+        - paragraph [ref=e116]: We ran three audits and diagnosed 10 problems before writing a line of code.
+    - generic [ref=e118]:
+      - generic [ref=e120]: (03) The numbers
+      - generic [ref=e121]:
+        - heading "Evidence, not promises." [level=2] [ref=e123]
+        - generic [ref=e125]:
+          - generic [ref=e126]:
+            - generic [ref=e127]: 9/10
+            - generic [ref=e128]: 5-Second Test
+            - generic [ref=e129]: Was 15/40 — now instant
+          - generic [ref=e130]:
+            - generic [ref=e131]: 80+
+            - generic [ref=e132]: SEO health
+            - generic [ref=e133]: Was 10/100
+          - generic [ref=e134]:
+            - generic [ref=e135]: "13"
+            - generic [ref=e136]: Indexed pages
+            - generic [ref=e137]: Was 4 — 13 routes Google can rank
+          - generic [ref=e138]:
+            - generic [ref=e139]: 0s
+            - generic [ref=e140]: Time to phone
+            - generic [ref=e141]: Was 15 seconds of scrolling
+        - generic [ref=e143]:
+          - generic [ref=e144]: What's next
+          - paragraph [ref=e145]: Analytics are wired. Once the site goes live, we'll track exactly how many people tap the call button, which service pages get the most visits, and where visitors come from.
+    - generic [ref=e147]:
+      - generic [ref=e149]: (04) Your turn
+      - heading "Your website is costing you customers." [level=2] [ref=e151]
+      - paragraph [ref=e153]: Every month a website like this stays live, potential customers land on it, can't find the phone number, and call someone else. Even one lost emergency call-out at ~£200 pays for the entire rebuild.
+      - paragraph [ref=e155]: We gave JJ a free audit and concept build to show what's possible.
+      - generic [ref=e157]:
+        - link "Get your free audit" [ref=e158] [cursor=pointer]:
+          - /url: mailto:hi@kicksnare.studio?subject=Free audit request
+          - text: Get your free audit
+          - img [ref=e160]
+        - link "Drop us an email" [ref=e162] [cursor=pointer]:
+          - /url: mailto:hi@kicksnare.studio
+        - link "DM @kicksnare ↗" [ref=e163] [cursor=pointer]:
+          - /url: https://x.com/kicksnare12
+      - generic [ref=e165]: If you don't love it, you don't pay. No questions.
+      - generic [ref=e167]:
+        - generic [ref=e168]: Built by
+        - link "OO →" [ref=e169] [cursor=pointer]:
+          - /url: /about
+  - contentinfo [ref=e170]:
+    - generic [ref=e171]:
+      - generic [ref=e172]:
+        - img "kicksnare" [ref=e173]
+        - generic [ref=e179]: kicksnare
+      - generic [ref=e180]:
+        - generic [ref=e181]:
+          - link "X / Twitter ↗" [ref=e182] [cursor=pointer]:
+            - /url: https://x.com/kicksnare12
+          - link "Privacy" [ref=e183] [cursor=pointer]:
+            - /url: /privacy
+        - link "Back to top ↑" [ref=e184] [cursor=pointer]:
+          - /url: /#work

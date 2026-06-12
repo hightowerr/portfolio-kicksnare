@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { ArrowRight, ArrowLeft, ArrowDiag, Close, Check } from './icons';
-import { cases as CASES, type CaseStudy } from '@/lib/cases';
+import { visibleCases as CASES, type CaseStudy } from '@/lib/cases';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface FontSet { display: string; serif: string }
@@ -228,6 +229,18 @@ export default function CaseStudyModal({ caseId, onClose, onOpen, fonts }: { cas
   const [scrollPct, setScrollPct] = useState(0);
   const [entered, setEntered] = useState(false);
   const isMobile = useIsMobile();
+  const router = useRouter();
+
+  // Navigate to dedicated page if case has one
+  const openCase = (id: string) => {
+    const target = CASES.find(c => c.id === id);
+    if (target?.href) {
+      onClose();
+      router.push(target.href);
+    } else {
+      onOpen(id);
+    }
+  };
 
   const navBtnSize = isMobile ? 44 : 34;
   const navBtnStyle: React.CSSProperties = {
@@ -249,8 +262,8 @@ export default function CaseStudyModal({ caseId, onClose, onOpen, fonts }: { cas
     document.body.style.overflow = 'hidden';
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowRight') onOpen(CASES[(cIdx + 1) % CASES.length].id);
-      if (e.key === 'ArrowLeft')  onOpen(CASES[(cIdx - 1 + CASES.length) % CASES.length].id);
+      if (e.key === 'ArrowRight') openCase(CASES[(cIdx + 1) % CASES.length].id);
+      if (e.key === 'ArrowLeft')  openCase(CASES[(cIdx - 1 + CASES.length) % CASES.length].id);
     };
     window.addEventListener('keydown', onKey);
     return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', onKey); };
@@ -308,10 +321,10 @@ export default function CaseStudyModal({ caseId, onClose, onOpen, fonts }: { cas
             </>}
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <button aria-label="Previous case" onClick={() => onOpen(CASES[(cIdx - 1 + CASES.length) % CASES.length].id)} style={navBtnStyle}>
+            <button aria-label="Previous case" onClick={() => openCase(CASES[(cIdx - 1 + CASES.length) % CASES.length].id)} style={navBtnStyle}>
               <ArrowLeft size={14}/>
             </button>
-            <button aria-label="Next case" onClick={() => onOpen(CASES[(cIdx + 1) % CASES.length].id)} style={navBtnStyle}>
+            <button aria-label="Next case" onClick={() => openCase(CASES[(cIdx + 1) % CASES.length].id)} style={navBtnStyle}>
               <ArrowRight size={14}/>
             </button>
             <span style={{ width: 1, height: 22, background: 'var(--line)', margin: '0 4px' }}/>
@@ -332,7 +345,7 @@ export default function CaseStudyModal({ caseId, onClose, onOpen, fonts }: { cas
           <CSApproach c={c} fonts={fonts} isMobile={isMobile}/>
           <CSSolution c={c} fonts={fonts} isMobile={isMobile}/>
           <CSResult c={c} fonts={fonts} isMobile={isMobile}/>
-          <CSCta c={c} fonts={fonts} onOpen={onOpen} isMobile={isMobile}/>
+          <CSCta c={c} fonts={fonts} onOpen={openCase} isMobile={isMobile}/>
         </div>
       </div>
     </div>

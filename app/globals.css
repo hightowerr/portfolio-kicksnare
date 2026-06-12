@@ -426,6 +426,27 @@ footer {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   CASE STUDY SECTION GRID
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@container (min-width: 760px) {
+  .cs-section-grid {
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+  }
+}
+
+/* ─── Case study CTA pill hover ────────────────────────────────────────── */
+.cta-cs-primary:hover .cta-cs-arr { transform: translateX(3px); }
+
+/* ─── About page bio grid ──────────────────────────────────────────────── */
+@container (min-width: 640px) {
+  .about-bio-grid {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    V4: ACCORDION — PainItem + ProcessStep
    ═══════════════════════════════════════════════════════════════════════════ */
 

@@ -35,6 +35,9 @@ One route. All navigation is anchor-based within the single page.
 | Route | Rendering | Source |
 |---|---|---|
 | `/` | Static (SSG) | `page.tsx` → `PortfolioClient.tsx` — all sections |
+| `/case-studies/evoltage` | Static (SSG) | `page.tsx` → `CaseStudyClient.tsx` — 4-section case study |
+| `/about` | Static (SSG) | `page.tsx` → `AboutClient.tsx` — bio + contact |
+| `/privacy` | Static (SSG) | `page.tsx` — privacy policy |
 
 **Section anchors on `/`:**
 
@@ -76,44 +79,56 @@ All section content is hardcoded in TSX. A content change requires a code change
 
 ### Case studies
 
-Three case studies are defined once in `CaseStudyModal.tsx` as a typed array. The `Work` section card data references the same IDs — case study metadata is not duplicated between the card display and the modal detail view.
+Four case studies are defined once in `lib/cases.ts` as a typed `CaseStudy[]` array. The `Work` section card data and `CaseStudyModal` both reference the same source. Case studies with an `href` field navigate to a dedicated page; those without open in the modal.
 
-| ID | Client | Sector | Key metric |
-|---|---|---|---|
-| `halocrate` | Halocrate | B2B SaaS · Devtools | -41% bounce on /pricing, 2.6× demo bookings |
-| `northbeam` | Northbeam DTC | DTC · Apparel | 3.1× ROAS, -34% CAC |
-| `mara` | Studio Mara | Wellness · Multi-location | -26% no-shows, +38% local organic traffic |
+| ID | Client | Sector | Key metric | Route |
+|---|---|---|---|---|
+| `halocrate` | Halocrate | B2B SaaS · Devtools | -41% bounce on /pricing, 2.6× demo bookings | Modal |
+| `northbeam` | Northbeam DTC | DTC · Apparel | 3.1× ROAS, -34% CAC | Modal |
+| `mara` | Studio Mara | Wellness · Multi-location | -26% no-shows, +38% local organic traffic | Modal |
+| `evoltage` | Evoltage UK | Trades · Local business | 5-Second Test 15/40→9/10, SEO 10→80+ | `/case-studies/evoltage` |
 
 ## File Structure
 
 ```
 app/
-├── globals.css           # Design tokens (@theme), @font-face, Tailwind, keyframes
-├── layout.tsx            # <html><body>; metadata; Vercel Analytics
-└── page.tsx              # Server Component entry — renders PortfolioClient
+├── globals.css                         # Design tokens, @font-face, Tailwind, keyframes
+├── layout.tsx                          # <html><body>; metadata; JSON-LD; Vercel Analytics
+├── page.tsx                            # Server Component entry — renders PortfolioClient
+├── sitemap.ts                          # Dynamic sitemap
+├── robots.ts                           # Robots.txt
+├── about/
+│   └── page.tsx                        # Server Component — renders AboutClient
+├── case-studies/
+│   └── evoltage/
+│       ├── page.tsx                    # Server Component — renders CaseStudyClient
+│       ├── CaseStudyClient.tsx         # 'use client' — 4-section case study
+│       └── opengraph-image.tsx         # Edge runtime OG image
+└── privacy/
+    └── page.tsx                        # Privacy policy
+
+lib/
+├── cases.ts                            # CaseStudy + HeroProject interfaces + data arrays
+└── fonts.ts                            # FontSet type, PAIRS, defaultFonts
 
 components/
-├── PortfolioClient.tsx   # 'use client' — all page sections in one client boundary
-├── CaseStudyModal.tsx    # 'use client' — full-screen overlay; 3 case studies
-└── icons.tsx             # 6 inline SVG glyphs: Soundwave, ArrowRight, ArrowLeft,
-                          #   ArrowDiag, Plus, Close, Check
+├── PortfolioClient.tsx                 # 'use client' — homepage client boundary
+├── CaseStudyModal.tsx                  # 'use client' — full-screen overlay for modal cases
+├── Header.tsx                          # 'use client' — shared sticky header
+├── Footer.tsx                          # 'use client' — shared footer
+├── AboutClient.tsx                     # 'use client' — /about page client boundary
+├── BottomBar.tsx                       # 'use client' — mobile CTA bar
+├── RotatingWord.tsx                    # 'use client' — hero word animation
+└── icons.tsx                           # Inline SVG glyphs
+
+hooks/
+├── useIsMobile.ts                      # SSR-safe viewport hook
+└── useIntersectionObserver.ts          # Generic IO hook
 
 public/
-├── fonts/                # All 7 font families vendored as TTF / variable TTF
-│   ├── Geist/            # 100–900 static weights
-│   ├── InstrumentSerif/  # 400 regular + 400 italic
-│   ├── JetBrainsMono/    # 100–800 variable
-│   ├── SpaceGrotesk/
-│   ├── CrimsonPro/
-│   ├── BricolageGrotesque/
-│   └── Newsreader/
-└── assets/
-    ├── logo-kicksnare-dark.svg
-    ├── logo-kicksnare-light.svg
-    └── mark-soundwave.svg
+├── fonts/                              # Vendored TTF / variable TTF
+└── assets/                             # Static SVGs
 ```
-
-Notable absences (all intentional): no `lib/`, no `content/`, no `app/contact/`, no `components/ui/`, no `components/layout/`. Flat structure appropriate to the scope.
 
 ## Exit / Handoff Checklist
 
@@ -129,9 +144,9 @@ That is the complete list. No email service account, no CMS credentials, no data
 
 1. **No user data is stored.** The audit CTA is a hyperlink (`mailto:` or social DM link). No form submission, no persistence, no on-site email capture. If this changes, update the System Boundary and Stack before writing any code.
 2. **All fonts are local.** Never load from Google Fonts or any CDN. If a font isn't vendored in `public/fonts/`, it doesn't exist in the design. Font loading performance (large TTF files) is the primary mobile load-time risk.
-3. **`'use client'` is confined to `PortfolioClient.tsx` and `CaseStudyModal.tsx`.** `page.tsx` and `layout.tsx` remain Server Components. No client boundary creep into other files.
+3. **`'use client'` boundaries are explicit.** Each page has one client root (`PortfolioClient`, `CaseStudyClient`, `AboutClient`). Shared interactive components (`Header`, `Footer`, `BottomBar`, `CaseStudyModal`, `RotatingWord`) are also `'use client'`. `page.tsx` and `layout.tsx` remain Server Components.
 4. **Design tokens are CSS custom properties on `:root` in `globals.css`.** No hardcoded hex values in component files. Always `var(--token)`.
 5. **Content lives in TSX.** A content change requires a code change. There is no editorial workflow and no CMS integration — this is a deliberate scope decision.
-6. **Case study data is defined once, in `CaseStudyModal.tsx`.** Card display in the Work section references the same source. No duplication of case study metadata across files.
+6. **Case study data is defined once, in `lib/cases.ts`.** Card display in the Work section, modal detail view, and hero project list all reference the same source. Cases with `href` navigate to a dedicated page; those without open in the modal.
 7. **No shadows except the case-study modal.** `--shadow-lg` (`0 30px 80px rgba(0,0,0,0.35)`) is used on the modal shell only. All other visual separation uses hairline borders (`1px solid var(--line)`).
 8. **First-person plural voice in all copy.** "We help…" — speaking as a team. The prospect is "you". This applies to JSX string literals in components, not just the design docs.

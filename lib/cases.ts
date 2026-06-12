@@ -5,10 +5,13 @@ export interface CaseStudy {
   sector: string;
   year: string;
   duration: string;
+  href?: string;
   role: string;
   stack: string;
   services: string[];
   tone: string;
+  /** false = kept for reference but hidden from homepage */
+  visible?: boolean;
   // Work card fields
   tag: string;
   blurb: string;
@@ -43,7 +46,7 @@ export interface HeroProject {
 
 export const cases: CaseStudy[] = [
   {
-    id: 'halocrate',
+    id: 'halocrate', visible: false,
     name: 'Halocrate',
     tagline: 'Cut bounce by 41% and demo bookings by 2.6\u00d7 on a 1.2M-visit SaaS site.',
     sector: 'B2B SaaS \u00b7 Devtools', year: '2025', duration: '6 weeks',
@@ -84,7 +87,7 @@ export const cases: CaseStudy[] = [
     },
   },
   {
-    id: 'northbeam',
+    id: 'northbeam', visible: false,
     name: 'Northbeam DTC',
     tagline: '3.1\u00d7 ROAS on a $1.2M/yr paid account in one quarter.',
     sector: 'DTC \u00b7 Apparel', year: '2025 \u00b7 ongoing', duration: 'Ongoing retainer',
@@ -121,7 +124,7 @@ export const cases: CaseStudy[] = [
     },
   },
   {
-    id: 'mara',
+    id: 'mara', visible: false,
     name: 'Studio Mara',
     tagline: 'Cut no-shows by 26% across a 14-location wellness chain.',
     sector: 'Wellness \u00b7 Multi-location', year: '2024', duration: '9 weeks',
@@ -157,12 +160,57 @@ export const cases: CaseStudy[] = [
       quote: { body: 'The app finally fits the business. We grew two more locations this year without the usual chaos.', who: 'Inez W.', role: 'Founder, Studio Mara' },
     },
   },
+  {
+    id: 'evoltage', visible: true,
+    name: 'Evoltage UK',
+    tagline: 'Turned a 15/40 failing site into a 9/10 pass in 3 days.',
+    sector: 'Trades \u00b7 Local business', year: '2025', duration: '3 days',
+    href: '/case-studies/evoltage',
+    role: 'Design + dev lead', stack: 'Next.js \u00b7 Vercel',
+    services: ['Web design', 'SEO'],
+    tone: '#DDE8DF',
+    tag: 'Web design \u00b7 SEO',
+    blurb: 'Free audit and concept rebuild for a 24-hour electrician. SEO health from 10 to 80+. Phone number findable in 0 seconds.',
+    meta: '2025 \u00b7 3 days',
+    figure: 'site \u00b7 9:19',
+    problem: {
+      lede: "JJ\u2019s electrician website buried the phone number 15 seconds down. The main CTA said \u201cRead more...\u201d",
+      detail: "Nobody in the dark wants to read more. They want a phone number. JJ\u2019s site buried the phone number 15 seconds of scrolling down, had zero trust signals above the fold, and scored 10/100 on SEO health.",
+      pains: [
+        'Phone number buried 15 seconds below the fold',
+        'Zero trust signals visible on landing',
+        'Main CTA was \u201cRead more...\u201d on an emergency service site',
+      ],
+    },
+    approach: {
+      lede: 'Three audits. Ten problems diagnosed. Zero code written until the plan was clear.',
+      steps: [
+        { n: '01', t: 'Audit', d: 'Ran the original site through SEO, trust signal, and conversion audits. Scored 10/100 on Lighthouse.' },
+        { n: '02', t: 'Audit', d: 'Diagnosed 10 specific problems across SEO, trust, and conversion.' },
+        { n: '03', t: 'Rebuild', d: 'Built 13 pages in 3 days with sticky phone bar, trust badges, and dual CTA.' },
+        { n: '04', t: 'Retest', d: 'Re-ran all audits on the rebuilt site. SEO 80+, phone visible in 0 seconds.' },
+      ],
+      insight: { label: 'The bet', body: 'Emergency service visitors decide in seconds. Every element above the fold must answer: can I call right now?' },
+    },
+    solution: {
+      shipped: ['13-page responsive site', 'Sticky tap-to-call bar', '5 trust badges above fold', 'Dual CTA (form + phone)', 'SEO 10 \u2192 80+', 'Built in 3 days'],
+      figures: [{ label: 'before \u00b7 mobile', aspect: '9/19' }, { label: 'after \u00b7 mobile', aspect: '9/19' }],
+    },
+    result: {
+      lede: 'The rebuilt site passed every test the original failed.',
+      stats: [
+        { v: '80+', l: 'SEO health', sub: 'Was 10/100' },
+        { v: '13', l: 'Indexed pages', sub: 'Was 4' },
+        { v: '0s', l: 'Time to phone', sub: 'Was 15 seconds' },
+      ],
+      quote: { body: '', who: '', role: '' },
+    },
+  },
 ];
 
+/** Only visible cases — used by homepage Work grid and modal navigation */
+export const visibleCases = cases.filter(c => c.visible !== false);
+
 export const heroProjects: HeroProject[] = [
-  { id: 'halocrate', name: 'Halocrate', meta: 'B2B SaaS \u00b7 2025' },
-  { id: 'northbeam', name: 'Northbeam DTC', meta: 'Paid growth \u00b7 2025' },
-  { id: 'mara', name: 'Studio Mara', meta: 'Booking app \u00b7 2024' },
-  { id: null, name: 'Lattice OS', meta: 'Web design \u00b7 2024' },
-  { id: null, name: 'Vela Mobility', meta: 'Brand + site \u00b7 2024' },
+  { id: 'evoltage', name: 'Evoltage UK', meta: 'Website rebuild \u00b7 2025' },
 ];

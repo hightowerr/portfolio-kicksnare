@@ -6,13 +6,13 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-Mobile-First Responsive — all 9 slices (V1–V9) complete
+Evoltage Case Study — all 5 slices (V1–V5) complete
 
 ---
 
 ## Current Goal
 
-None active. All mobile-first slices implemented.
+None active. Evoltage case study feature implemented.
 
 ---
 
@@ -49,6 +49,28 @@ None active. All mobile-first slices implemented.
 
 Nothing active.
 
+## Recently Completed — Evoltage Hero Screenshot
+
+- Replaced SVG wireframe in `EvoltageBeforeFig` (S1) with real desktop screenshot (`evoltage-hero-old.png`) inside browser mockup frame
+- Screenshot copied to `public/images/evoltage-hero-old.png` for static serving
+- SVG `<image>` element with `preserveAspectRatio="xMidYMin slice"` + `<clipPath>` to contain within browser content area
+- Added browser dots (red/yellow/green) to mockup chrome
+- Repositioned all 3 annotations to match real screenshot content: "Phone buried" over top-bar phone number, "No hook" over "Evoltage UK" headline, "No clear action" over "Read more..." button
+- Updated current-issues.md issue #4 (partially resolved)
+- Replaced S2 before/after SVG wireframes (`EvoltageBeforeMobileFig`, `EvoltageAfterMobileFig`) with real mobile screenshots
+- `eVoltage image-home.png` → `public/images/evoltage-before-mobile.png` (before), `eVoltage new-home.png` → `public/images/evoltage-after-mobile.png` (after)
+- SVG wireframes replaced with `<img>` elements (167×355px, lazy-loaded, descriptive alt text)
+- Before/After labels preserved as positioned overlays
+- current-issues.md issue #4 fully resolved — all case study figures now use real screenshots
+
+## Recently Completed — Evoltage Case Study
+
+- V1: Extracted `components/Header.tsx` and `components/Footer.tsx` from `PortfolioClient.tsx`. Created `/case-studies/evoltage` route with `page.tsx` (Server Component + metadata) and `CaseStudyClient.tsx` (`'use client'`). Built S1 (The Problem): pathos headline, JJ paragraph, annotated before-SVG (`EvoltageBeforeFig`), 3 inline stats. Header accepts `navLinks?`/`ctaHref?`/`ctaLabel?` props. Footer accepts `backHref?` prop. Added `.cs-section-grid` CSS rule.
+- V2: Built S2 (What We Built): before/after mobile viewport SVGs (`EvoltageBeforeMobileFig`, `EvoltageAfterMobileFig`) with side-by-side layout on desktop, 5-item check bullet list, methodology sentence. Built S3 (The Numbers): 4 large stat blocks with accent orange values, "What's next" text block. All inline in `CaseStudyClient.tsx`.
+- V3: Built S4 (Your Turn): dark section with lost-job framing, spec-work line, 3-tier CTA group (primary paper pill, outlined secondary, text link tertiary), guarantee in serif italic. Added byline strip ("Built by OO →" with `/about` link). Added `.cta-cs-primary` hover rule to `globals.css`.
+- V4: Created `lib/fonts.ts` — exports `FontSet`, `PAIRS`, `defaultFonts`. Removed local `FontSet`/`PAIRS` from `PortfolioClient.tsx` and `CaseStudyClient.tsx`, replaced with imports. Created `/about` page: `app/about/page.tsx` (Server Component + metadata) and `components/AboutClient.tsx` (`'use client'`). Bio hero section with `StripedFig` photo placeholder + headline + credential + origin copy. Dark contact section with 3 card affordances (booking/email/DM) + mobile gate. Added `.about-bio-grid` CSS rule. Updated `app/sitemap.ts` with `/case-studies/evoltage` and `/about`. Added `url` to Person schema in `app/layout.tsx`.
+- V5: Added `href?: string` to `CaseStudy` interface in `lib/cases.ts`. Added evoltage entry to `cases[]` (id `'evoltage'`, tone `#DDE8DF`, href `/case-studies/evoltage`) and `heroProjects[]` (after mara, before Lattice OS). Updated `WorkCard` to conditionally render `<Link>` when `c.href` exists, `<button>` otherwise. Updated hero project rows with three-branch conditional: `<Link>` for cases with href, `<a onClick>` for modal cases, `<a href="#work">` for placeholders. Created `app/case-studies/evoltage/opengraph-image.tsx` (edge runtime, 1200x630, dark background).
+
 ---
 
 ## SEO Fixes
@@ -72,6 +94,10 @@ Nothing active.
 
 ## Next Up
 
+- Replace StripedFig photo placeholders with real photos (About page)
+- ~~Replace S2 before/after mobile wireframes with real mobile screenshots of evoltageuk.co.uk~~ ✅ Done
+- Extract `Reveal` component to `components/Reveal.tsx` shared module (currently duplicated in PortfolioClient, CaseStudyClient, AboutClient)
+- Add real JJ testimonial quote to evoltage case study when available
 - Review full section balance at various viewport widths
 - Consider whether `ui-context.md` Brand Non-Negotiable #5 needs updating to document the illustration exception
 
@@ -126,4 +152,8 @@ None active.
 2026-06-06 — Accordion toggle buttons (pain items + process steps) enlarged from 20x20px to 48x48px minimum via `minWidth`/`minHeight` in `components/PortfolioClient.tsx`. 8 buttons total (4 pain + 4 process). Fixes medium finding #17.
 2026-06-06 — Added `app/icon.tsx` (32x32 PNG favicon) and `app/apple-icon.tsx` (180x180 Apple Touch Icon). Both render the Soundwave mark (accent + paper bars on primary green bg) via Next.js `ImageResponse`. Fixes medium finding #18.
 2026-06-06 — AuditFig Unsplash image `alt=""` replaced with descriptive alt text in `components/PortfolioClient.tsx`. Fixes medium finding #19.
-
+2026-06-12 — Evoltage Case Study feature implemented (5 slices). V1: Extracted Header.tsx and Footer.tsx from PortfolioClient, created /case-studies/evoltage route with S1. V2: Added S2 (before/after SVGs + bullets + methodology) and S3 (4 stat blocks + what's next). V3: Added S4 (dark CTA section) and byline strip. V4: Created /about page with OO bio, extracted FontSet/PAIRS to lib/fonts.ts, updated sitemap + JSON-LD. V5: Added evoltage to cases[] + heroProjects[], WorkCard conditional Link vs button, hero project row three-branch conditional, OG image. `pnpm tsc --noEmit` + `pnpm next build` clean with 5 routes.
+2026-06-12 — Replaced S1 `EvoltageBeforeFig` wireframe SVG with real desktop screenshot (`evoltage-hero-old.png`). Image embedded via SVG `<image>` + `<clipPath>` inside browser mockup frame with traffic-light dots. All 3 annotations repositioned to match real content: "Phone buried" (top bar), "No hook" (headline), "Weak CTA" at fold line. `pnpm tsc --noEmit` clean.
+2026-06-12 — Replaced S2 before/after SVG wireframes with real mobile screenshots in iPhone device mockups. Upgraded to 1290×2796px iPhone 14 Pro Max captures. `PhoneMockup` component: dark bezel, Dynamic Island, home indicator, drop shadow. `pnpm tsc --noEmit` clean.
+2026-06-12 — Removed all 5-Second Test references (subjective internal metric). S1 inline stats now 2-col (SEO score + Phone number). S3 stats now 3 items. Updated page.tsx description, OG alt, lib/cases.ts blurb/lede/steps/stats.
+2026-06-12 — S4 copy rewrite: replaced explanatory paragraph with rhetorical question — "A single emergency call-out is worth ~£200. How many lost calls would you accept before rebuilding?"

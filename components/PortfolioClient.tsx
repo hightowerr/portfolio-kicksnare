@@ -1,20 +1,17 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { Soundwave, ArrowRight, ArrowDiag, Plus, Check, Close } from './icons';
 import CaseStudyModal from './CaseStudyModal';
+import ContactModal from './ContactModal';
 import BottomBar from './BottomBar';
 import RotatingWord from './RotatingWord';
-import { cases, heroProjects, type CaseStudy } from '@/lib/cases';
+import Header from './Header';
+import Footer from './Footer';
+import { visibleCases, heroProjects, type CaseStudy } from '@/lib/cases';
 import { useIsMobile } from '@/hooks/useIsMobile';
-
-type FontSet = { display: string; serif: string };
-
-const PAIRS: Record<string, { display: string; serif: string; label: string }> = {
-  'geist-instrument': { display: "'Geist', system-ui, sans-serif", serif: "'Instrument Serif', serif", label: 'Geist · Instrument' },
-  'bricolage-newsreader': { display: "'Bricolage Grotesque', system-ui, sans-serif", serif: "'Newsreader', serif", label: 'Bricolage · Newsreader' },
-  'space-crimson': { display: "'Space Grotesk', system-ui, sans-serif", serif: "'Crimson Pro', serif", label: 'Space Grotesk · Crimson' },
-};
+import { type FontSet, PAIRS } from '@/lib/fonts';
 
 // ─── Reveal ──────────────────────────────────────────────────────────────────
 function Reveal({ children, delay = 0, y = 20, style = {}, className }: { children: React.ReactNode; delay?: number; y?: number; style?: React.CSSProperties; className?: string }) {
@@ -185,199 +182,6 @@ function AuditFig() {
   );
 }
 
-// ─── Header ──────────────────────────────────────────────────────────────────
-function Header({
-  scrolled,
-  fonts,
-  heroPassed,
-  isMobile,
-  activeSection,
-}: {
-  scrolled: boolean;
-  fonts: FontSet;
-  heroPassed: boolean;
-  isMobile: boolean;
-  activeSection: string | null;
-}) {
-  const [navOpen, setNavOpen] = useState(false);
-
-  const navLinks = [
-    { href: '#work',    label: 'Work' },
-    { href: '#audit',   label: 'Audit' },
-    { href: '#about',   label: 'About' },
-    { href: '#contact', label: 'Contact' },
-  ];
-
-  useEffect(() => {
-    if (navOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => { document.body.style.overflow = ''; };
-  }, [navOpen]);
-
-  return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 50, backdropFilter: 'blur(20px) saturate(160%)', WebkitBackdropFilter: 'blur(20px) saturate(160%)', background: scrolled ? 'rgba(249,254,253,0.82)' : 'rgba(249,254,253,0)', borderBottom: scrolled ? '1px solid var(--line)' : '1px solid transparent', transition: 'background .3s, border-color .3s' }}>
-      <div className="wrap header-wrap" style={{ alignItems: 'center', padding: '20px var(--wrap-pad-mobile)', gap: 24 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <Soundwave size={22} />
-          <span style={{ fontFamily: fonts.display, fontWeight: 600, fontSize: 18, letterSpacing: '-0.01em' }}>kicksnare</span>
-          <span style={{ fontFamily: 'var(--display)', fontSize: 11, color: 'var(--muted)', letterSpacing: '0.14em', textTransform: 'uppercase', marginLeft: 4 }}>digital</span>
-        </div>
-        <nav className="nav-desktop" aria-label="Main" style={{ gap: 36, justifyContent: 'center' }}>
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              className={`navlink${activeSection && link.href === '#' + activeSection ? ' navlink--active' : ''}`}
-              href={link.href}
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-        <div className="nav-cta-wrap" style={{ justifyContent: 'flex-end', alignItems: 'center', gap: 14 }}>
-          <a
-            href="#audit"
-            className="cta-primary"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 10,
-              background: 'var(--primary)',
-              color: 'var(--paper)',
-              textDecoration: 'none',
-              fontFamily: fonts.display,
-              fontWeight: 500,
-              fontSize: 14,
-              padding: '11px 16px 11px 18px',
-              borderRadius: 999,
-              opacity: isMobile && !heroPassed ? 0 : 1,
-              pointerEvents: isMobile && !heroPassed ? 'none' : 'auto',
-              transition: 'opacity 0.3s ease',
-            }}
-          >
-            Free audit
-            <span className="cta-arr" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 20, height: 20, borderRadius: 999, background: 'var(--accent)', color: '#06372d', transition: 'transform .25s ease' }}>
-              <ArrowRight size={11} />
-            </span>
-          </a>
-        </div>
-        <button
-          type="button"
-          className="nav-hamburger"
-          aria-label="Open menu"
-          onClick={() => setNavOpen(true)}
-          style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 8,
-            minWidth: 48,
-            minHeight: 48,
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            gap: 5,
-          }}
-        >
-          <span style={{ width: 22, height: 2, background: 'var(--ink)', borderRadius: 1 }} />
-          <span style={{ width: 22, height: 2, background: 'var(--ink)', borderRadius: 1 }} />
-          <span style={{ width: 16, height: 2, background: 'var(--ink)', borderRadius: 1 }} />
-        </button>
-      </div>
-
-      {navOpen && (
-        <div
-          className="nav-overlay"
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 99,
-            background: 'var(--primary)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 32,
-          }}
-        >
-          <button
-            type="button"
-            aria-label="Close menu"
-            onClick={() => setNavOpen(false)}
-            style={{
-              position: 'absolute',
-              top: 20,
-              right: 24,
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: 8,
-              color: 'var(--paper)',
-            }}
-          >
-            <Close size={24} />
-          </button>
-
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              className={`navlink-mobile${activeSection && link.href === '#' + activeSection ? ' navlink-mobile--active' : ''}`}
-              href={link.href}
-              onClick={() => setNavOpen(false)}
-              style={{
-                fontFamily: fonts.display,
-                fontWeight: 500,
-                fontSize: 28,
-                color: 'var(--paper)',
-                textDecoration: 'none',
-              }}
-            >
-              {link.label}
-            </a>
-          ))}
-
-          <a
-            href="#audit"
-            className="cta-primary"
-            onClick={() => setNavOpen(false)}
-            style={{
-              marginTop: 16,
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 10,
-              background: 'var(--accent)',
-              color: 'var(--ink)',
-              textDecoration: 'none',
-              fontFamily: fonts.display,
-              fontWeight: 500,
-              fontSize: 16,
-              padding: '14px 20px 14px 22px',
-              borderRadius: 999,
-            }}
-          >
-            Free audit
-            <span className="cta-arr" style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 22,
-              height: 22,
-              borderRadius: 999,
-              background: 'var(--paper)',
-              color: 'var(--primary)',
-              transition: 'transform .25s ease',
-            }}>
-              <ArrowRight size={12} />
-            </span>
-          </a>
-        </div>
-      )}
-    </header>
-  );
-}
-
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function Hero({ fonts, onOpenCase }: { fonts: FontSet; onOpenCase: (id: string) => void }) {
   return (
@@ -419,22 +223,31 @@ function Hero({ fonts, onOpenCase }: { fonts: FontSet; onOpenCase: (id: string) 
             <div>
               <div style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 18 }}>Selected projects</div>
               <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
-                {heroProjects.map((p, i) => (
-                  <li key={i}>
-                    <a
-                      href={p.id ? '#' : '#work'}
-                      onClick={p.id ? (e) => { e.preventDefault(); onOpenCase(p.id!); } : undefined}
-                      className="proj-row"
-                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', borderTop: '1px solid var(--line)', ...(i === heroProjects.length - 1 ? { borderBottom: '1px solid var(--line)' } : {}), fontFamily: fonts.display, color: 'var(--ink)', textDecoration: 'none', fontSize: 19, fontWeight: 500, letterSpacing: '-0.015em', transition: 'padding .35s cubic-bezier(.2,.7,.2,1), color .25s', cursor: p.id ? 'pointer' : 'default' }}
-                    >
+                {heroProjects.map((p, i) => {
+                  const casesByid = Object.fromEntries(visibleCases.map(c => [c.id, c]));
+                  const resolvedHref = p.id && casesByid[p.id]?.href;
+                  const rowStyle: React.CSSProperties = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', borderTop: '1px solid var(--line)', ...(i === heroProjects.length - 1 ? { borderBottom: '1px solid var(--line)' } : {}), fontFamily: fonts.display, color: 'var(--ink)', textDecoration: 'none', fontSize: 19, fontWeight: 500, letterSpacing: '-0.015em', transition: 'padding .35s cubic-bezier(.2,.7,.2,1), color .25s', cursor: p.id ? 'pointer' : 'default' };
+                  const inner = (
+                    <>
                       <span style={{ display: 'inline-flex', alignItems: 'baseline', gap: 14 }}>
                         <span style={{ fontFamily: 'var(--display)', fontSize: 11, color: 'var(--muted)', letterSpacing: '0.14em', textTransform: 'uppercase' as const }}>{String(i + 1).padStart(2, '0')}</span>
                         {p.name}
                       </span>
                       <span style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', color: 'var(--muted)', textTransform: 'uppercase' }}>{p.meta} {p.id ? '→' : '·'}</span>
-                    </a>
-                  </li>
-                ))}
+                    </>
+                  );
+                  return (
+                    <li key={i}>
+                      {resolvedHref ? (
+                        <Link href={resolvedHref} className="proj-row" style={rowStyle}>{inner}</Link>
+                      ) : p.id ? (
+                        <a href="#" onClick={(e) => { e.preventDefault(); onOpenCase(p.id!); }} className="proj-row" style={rowStyle}>{inner}</a>
+                      ) : (
+                        <a href="#work" className="proj-row" style={rowStyle}>{inner}</a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           </Reveal>
@@ -634,34 +447,47 @@ function Problem({ fonts }: { fonts: FontSet }) {
 // ─── Work ─────────────────────────────────────────────────────────────────────
 function WorkCard({ c, index, fonts, onOpen }: { c: CaseStudy; index: number; fonts: FontSet; onOpen: () => void }) {
   const [hover, setHover] = useState(false);
+
+  const cardVisual = (
+    <>
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 5', borderRadius: 22, overflow: 'hidden', background: c.tone, border: '1px solid rgba(6,55,45,0.05)', transition: 'transform .6s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'translateY(-6px)' : 'translateY(0)' }}>
+        <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true" style={{ transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'scale(1.06)' : 'scale(1)' }}>
+          <defs>
+            <pattern id={`work-stripes-${index}`} patternUnits="userSpaceOnUse" width="3" height="3" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="3" stroke="rgba(6,55,45,0.06)" strokeWidth="1.5" />
+            </pattern>
+          </defs>
+          <rect width="100" height="100" fill={`url(#work-stripes-${index})`} />
+        </svg>
+        <div style={{ position: 'absolute', top: 18, left: 18, right: 18, display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--display)', fontSize: 11, color: 'rgba(6,55,45,0.55)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+          <span>case {String(index + 1).padStart(2, '0')}</span>
+          <span>{c.figure}</span>
+        </div>
+        <div style={{ position: 'absolute', right: 18, bottom: 18, width: 52, height: 52, borderRadius: 999, background: hover ? 'var(--accent)' : 'rgba(255,255,255,0.92)', border: '1px solid rgba(6,55,45,0.08)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', transform: hover ? 'translate(4px,-4px)' : 'translate(0,0)', transition: 'transform .35s cubic-bezier(.2,.7,.2,1), background .25s' }}>
+          <ArrowDiag size={18} />
+        </div>
+      </div>
+      <div style={{ paddingTop: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--display)', fontSize: 11, color: 'var(--muted)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+          <span>{c.tag}</span><span>{c.meta}</span>
+        </div>
+        <h3 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 600, fontSize: 30, lineHeight: 1.02, letterSpacing: '-0.025em' }}>{c.name}</h3>
+        <p style={{ margin: 0, color: 'var(--muted)', fontSize: 16, lineHeight: 1.5 }}>{c.blurb}</p>
+      </div>
+    </>
+  );
+
   return (
     <Reveal delay={index * 100}>
-      <button type="button" onClick={onOpen} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{ display: 'block', width: '100%', background: 'none', border: 'none', padding: 0, margin: 0, textAlign: 'left' as const, color: 'inherit', cursor: 'pointer', font: 'inherit' }}>
-        <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 5', borderRadius: 22, overflow: 'hidden', background: c.tone, border: '1px solid rgba(6,55,45,0.05)', transition: 'transform .6s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'translateY(-6px)' : 'translateY(0)' }}>
-          <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true" style={{ transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'scale(1.06)' : 'scale(1)' }}>
-            <defs>
-              <pattern id={`work-stripes-${index}`} patternUnits="userSpaceOnUse" width="3" height="3" patternTransform="rotate(45)">
-                <line x1="0" y1="0" x2="0" y2="3" stroke="rgba(6,55,45,0.06)" strokeWidth="1.5" />
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill={`url(#work-stripes-${index})`} />
-          </svg>
-          <div style={{ position: 'absolute', top: 18, left: 18, right: 18, display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--display)', fontSize: 11, color: 'rgba(6,55,45,0.55)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-            <span>case {String(index + 1).padStart(2, '0')}</span>
-            <span>{c.figure}</span>
-          </div>
-          <div style={{ position: 'absolute', right: 18, bottom: 18, width: 52, height: 52, borderRadius: 999, background: hover ? 'var(--accent)' : 'rgba(255,255,255,0.92)', border: '1px solid rgba(6,55,45,0.08)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', transform: hover ? 'translate(4px,-4px)' : 'translate(0,0)', transition: 'transform .35s cubic-bezier(.2,.7,.2,1), background .25s' }}>
-            <ArrowDiag size={18} />
-          </div>
-        </div>
-        <div style={{ paddingTop: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--display)', fontSize: 11, color: 'var(--muted)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
-            <span>{c.tag}</span><span>{c.meta}</span>
-          </div>
-          <h3 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 600, fontSize: 30, lineHeight: 1.02, letterSpacing: '-0.025em' }}>{c.name}</h3>
-          <p style={{ margin: 0, color: 'var(--muted)', fontSize: 16, lineHeight: 1.5 }}>{c.blurb}</p>
-        </div>
-      </button>
+      {c.href ? (
+        <Link href={c.href} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{ display: 'block', width: '100%', textDecoration: 'none', color: 'inherit', padding: 0, cursor: 'pointer' }}>
+          {cardVisual}
+        </Link>
+      ) : (
+        <button type="button" onClick={onOpen} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{ display: 'block', width: '100%', background: 'none', border: 'none', padding: 0, margin: 0, textAlign: 'left' as const, color: 'inherit', cursor: 'pointer', font: 'inherit' }}>
+          {cardVisual}
+        </button>
+      )}
     </Reveal>
   );
 }
@@ -686,7 +512,7 @@ function Work({ fonts, onOpenCase }: { fonts: FontSet; onOpenCase: (id: string) 
           </Reveal>
         </div>
         <div className="grid [grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-5 lg:gap-7">
-          {cases.map((c, i) => <WorkCard key={i} c={c} index={i} fonts={fonts} onOpen={() => onOpenCase(c.id)} />)}
+          {visibleCases.map((c, i) => <WorkCard key={i} c={c} index={i} fonts={fonts} onOpen={() => onOpenCase(c.id)} />)}
         </div>
       </div>
     </section>
@@ -895,230 +721,6 @@ function Process({ fonts }: { fonts: FontSet }) {
   );
 }
 
-// ─── ContactModal ────────────────────────────────────────────────────────────
-function ContactModal({ onClose, fonts }: { onClose: () => void; fonts: FontSet }) {
-  const [name, setName]       = useState('');
-  const [email, setEmail]     = useState('');
-  const [message, setMessage] = useState('');
-  const [status, setStatus]   = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [entered, setEntered] = useState(false);
-  const isMobile = useIsMobile();
-
-  useEffect(() => {
-    requestAnimationFrame(() => setEntered(true));
-  }, []);
-
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
-    document.addEventListener('keydown', handleKey);
-    return () => document.removeEventListener('keydown', handleKey);
-  }, [onClose]);
-
-  useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = ''; };
-  }, []);
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setStatus('loading');
-    fetch('https://formspree.io/f/meedaznk', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ name, email, message }),
-    })
-      .then(res => setStatus(res.ok ? 'success' : 'error'))
-      .catch(() => setStatus('error'));
-  }
-
-  const srOnly: React.CSSProperties = {
-    position: 'absolute',
-    width: 1, height: 1,
-    padding: 0, margin: -1,
-    overflow: 'hidden',
-    clip: 'rect(0,0,0,0)',
-    whiteSpace: 'nowrap',
-    borderWidth: 0,
-  };
-
-  const inputStyle: React.CSSProperties = {
-    display: 'block',
-    width: '100%',
-    padding: '12px 16px',
-    minHeight: 44,
-    borderRadius: 10,
-    border: '1px solid rgba(249,254,253,0.18)',
-    background: 'rgba(249,254,253,0.10)',
-    color: 'var(--paper)',
-    fontFamily: fonts.display,
-    fontSize: 16,
-    boxSizing: 'border-box' as const,
-  };
-
-  return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Contact form"
-      onClick={isMobile ? undefined : onClose}
-      style={isMobile ? {
-        position: 'fixed', inset: 0, zIndex: 100,
-        background: 'var(--primary)',
-        overflowY: 'auto',
-        opacity: entered ? 1 : 0.85,
-        transition: 'opacity 300ms ease',
-      } : {
-        position: 'fixed', inset: 0, zIndex: 100,
-        background: 'rgba(1,11,9,0.72)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: 24,
-        opacity: entered ? 1 : 0.85,
-        transition: 'opacity 300ms ease',
-      }}
-    >
-      <div
-        onClick={isMobile ? undefined : (e => e.stopPropagation())}
-        style={isMobile ? {
-          position: 'relative',
-          background: 'var(--primary)', color: 'var(--paper)',
-          padding: '60px 20px 40px',
-          width: '100%',
-          minHeight: '100%',
-        } : {
-          position: 'relative',
-          background: 'var(--primary)',
-          color: 'var(--paper)',
-          borderRadius: 28,
-          maxWidth: 520,
-          width: '100%',
-          padding: '44px 44px 40px',
-          boxShadow: 'var(--shadow-lg)',
-        }}
-      >
-        <button
-          onClick={onClose}
-          aria-label="Close"
-          style={isMobile ? {
-            position: 'fixed', top: 20, right: 20, zIndex: 110,
-            width: 44, height: 44, borderRadius: 999,
-            background: 'rgba(249,254,253,0.10)',
-            border: '1px solid rgba(249,254,253,0.15)',
-            cursor: 'pointer',
-            color: 'var(--paper)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          } : {
-            position: 'absolute', top: 20, right: 20,
-            width: 36, height: 36, borderRadius: 999,
-            background: 'rgba(249,254,253,0.10)',
-            border: '1px solid rgba(249,254,253,0.15)',
-            cursor: 'pointer',
-            color: 'var(--paper)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            transition: 'background .2s',
-          }}
-        >
-          <Close size={14} />
-        </button>
-
-        <div style={{
-          fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em',
-          textTransform: 'uppercase', color: 'rgba(249,254,253,0.55)', marginBottom: 14,
-        }}>
-          Get in touch
-        </div>
-        <h2 style={{
-          margin: '0 0 32px',
-          fontFamily: fonts.display, fontWeight: 500,
-          fontSize: 34, letterSpacing: '-0.022em', lineHeight: 1.0,
-          color: 'var(--paper)',
-        }}>
-          Let&apos;s{' '}
-          <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, letterSpacing: '-0.015em' }}>
-            talk.
-          </span>
-        </h2>
-
-        {status === 'success' ? (
-          <div style={{ textAlign: 'center', padding: '24px 0 8px' }}>
-            <div style={{
-              width: 48, height: 48, borderRadius: 999,
-              background: 'var(--accent)', color: '#06372d',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              margin: '0 auto 20px',
-            }}>
-              <Check size={20} />
-            </div>
-            <div style={{ fontFamily: fonts.display, fontSize: 20, fontWeight: 500, color: 'var(--paper)', marginBottom: 10 }}>
-              Message sent.
-            </div>
-            <div style={{ fontSize: 14, color: 'rgba(249,254,253,0.6)', lineHeight: 1.5 }}>
-              We&apos;ll get back to you within 24 hours.
-            </div>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} noValidate>
-            <label htmlFor="contact-name" style={srOnly}>Name</label>
-            <input
-              id="contact-name"
-              type="text"
-              required
-              placeholder="Name"
-              value={name}
-              onChange={e => setName(e.target.value)}
-              style={inputStyle}
-            />
-            <label htmlFor="contact-email" style={srOnly}>Email</label>
-            <input
-              id="contact-email"
-              type="email"
-              required
-              placeholder="Email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              style={{ ...inputStyle, marginTop: 12 }}
-            />
-            <label htmlFor="contact-message" style={srOnly}>Message</label>
-            <textarea
-              id="contact-message"
-              required
-              rows={4}
-              placeholder="Message"
-              value={message}
-              onChange={e => setMessage(e.target.value)}
-              style={{ ...inputStyle, marginTop: 12, resize: 'vertical' }}
-            />
-            {status === 'error' && (
-              <p style={{ margin: '10px 0 0', fontSize: 14, color: 'var(--accent)', lineHeight: 1.5 }}>
-                Something went wrong — please try again.
-              </p>
-            )}
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              style={{
-                marginTop: 20,
-                display: 'inline-flex', alignItems: 'center', gap: 10,
-                background: 'var(--accent)',
-                border: 'none',
-                color: '#06372d',
-                fontFamily: fonts.display, fontWeight: 500, fontSize: 14,
-                padding: '11px 20px',
-                minHeight: 44,
-                borderRadius: 999,
-                cursor: status === 'loading' ? 'default' : 'pointer',
-                opacity: status === 'loading' ? 0.7 : 1,
-                transition: 'opacity .2s',
-              }}
-            >
-              {status === 'loading' ? 'Sending...' : 'Send message →'}
-            </button>
-          </form>
-        )}
-      </div>
-    </div>
-  );
-}
-
 // ─── Contact ──────────────────────────────────────────────────────────────────
 function Contact({ fonts, isMobile }: { fonts: FontSet; isMobile: boolean }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -1294,27 +896,6 @@ function Contact({ fonts, isMobile }: { fonts: FontSet; isMobile: boolean }) {
 
       {modalOpen && <ContactModal onClose={() => setModalOpen(false)} fonts={fonts} />}
     </>
-  );
-}
-
-// ─── Footer ───────────────────────────────────────────────────────────────────
-function Footer({ fonts }: { fonts: FontSet }) {
-  return (
-    <footer style={{ background: 'var(--primary)', color: 'rgba(249,254,253,0.55)', borderTop: '1px solid rgba(249,254,253,0.10)', padding: '52px 0 56px', overflowX: 'hidden' }}>
-      <div className="wrap">
-        <div style={{ fontFamily: fonts.display, fontWeight: 500, fontSize: 'clamp(5rem, 16vw, 16.25rem)', lineHeight: 0.85, letterSpacing: '-0.045em', color: 'var(--paper)', display: 'flex', alignItems: 'center', gap: '0.18em' }}>
-          <Soundwave size={48} />
-          <span>kicksnare</span>
-        </div>
-        <div style={{ marginTop: 28, display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, fontFamily: fonts.display, fontSize: 14 }}>
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-            <a className="link-uline" href="https://x.com/kicksnare12" target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(249,254,253,0.7)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', minHeight: 44, padding: '0 8px', margin: '0 -8px' }}>X / Twitter ↗</a>
-            <a className="link-uline" href="/privacy" style={{ color: 'rgba(249,254,253,0.7)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', minHeight: 44, padding: '0 8px' }}>Privacy</a>
-          </div>
-          <a className="link-uline" href="#work" style={{ color: 'rgba(249,254,253,0.7)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', minHeight: 44, padding: '0 8px', margin: '0 -8px' }}>Back to top ↑</a>
-        </div>
-      </div>
-    </footer>
   );
 }
 

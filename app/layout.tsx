@@ -77,6 +77,7 @@ const jsonLd = [
         "Web Design",
         "Growth Marketing",
       ],
+      url: "https://www.kicksnare.digital/about",
       worksFor: { "@id": "https://www.kicksnare.digital/#organization" },
     },
     sameAs: ["https://x.com/kicksnare12"],
