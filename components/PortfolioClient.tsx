@@ -12,30 +12,7 @@ import Footer from './Footer';
 import { visibleCases, heroProjects, type CaseStudy } from '@/lib/cases';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { type FontSet, PAIRS } from '@/lib/fonts';
-
-// ─── Reveal ──────────────────────────────────────────────────────────────────
-function Reveal({ children, delay = 0, y = 20, style = {}, className }: { children: React.ReactNode; delay?: number; y?: number; style?: React.CSSProperties; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
-  useEffect(() => {
-    if (!ref.current) return;
-    const io = new IntersectionObserver(
-      es => es.forEach(e => { if (e.isIntersecting) setShown(true); }),
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-    );
-    io.observe(ref.current);
-    return () => io.disconnect();
-  }, []);
-  return (
-    <div ref={ref} className={className} style={{
-      ...style,
-      opacity: shown ? 1 : 0,
-      transform: shown ? 'translateY(0)' : `translateY(${y}px)`,
-      transition: `opacity .9s cubic-bezier(.2,.7,.2,1) ${delay}ms, transform 1s cubic-bezier(.2,.7,.2,1) ${delay}ms`,
-      willChange: 'opacity, transform',
-    }}>{children}</div>
-  );
-}
+import Reveal from './Reveal';
 
 // ─── Striped placeholder ──────────────────────────────────────────────────────
 function StripedFig({ aspect = '4 / 3', label = 'hero · 4:3', id = 'hero' }: { aspect?: string; label?: string; id?: string }) {
@@ -60,123 +37,62 @@ function AuditFig() {
     <div style={{
       position: 'relative', width: '100%', aspectRatio: '800 / 520',
       borderRadius: 28, overflow: 'hidden',
-      background: 'var(--paper-2)', border: 'var(--border-hair)',
+      background: 'var(--paper-2)', border: '1px solid rgba(6,55,45,0.06)',
     }}>
-      <svg
-        width="100%" height="100%"
-        viewBox="0 0 800 520"
-        preserveAspectRatio="xMidYMid meet"
-        aria-hidden="true"
-      >
+      <svg width="100%" height="100%" viewBox="0 0 800 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
         <defs>
           <pattern id="audit-fig-stripes" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
             <line x1="0" y1="0" x2="0" y2="4" style={{ stroke: 'var(--line)' }} strokeWidth="2" />
           </pattern>
-          {/* floodColor in SVG filter primitives does not reliably resolve CSS vars cross-browser */}
           <filter id="audit-browser-shadow" x="-5%" y="-5%" width="110%" height="115%">
             <feDropShadow dx="0" dy="4" stdDeviation="10" floodColor="rgba(1,11,9,0.10)" />
           </filter>
+          <clipPath id="audit-hero-clip">
+            <rect x="80" y="98" width="640" height="342" />
+          </clipPath>
         </defs>
 
-        {/* Layer 1: stripe background */}
         <rect width="800" height="520" fill="url(#audit-fig-stripes)" />
 
-        {/* Layer 2: browser card */}
-        <rect x="80" y="60" width="640" height="380" rx="12"
-          fill="white" filter="url(#audit-browser-shadow)" />
-
-        {/* Chrome bar */}
+        {/* Browser card shell */}
+        <rect x="80" y="60" width="640" height="380" rx="12" fill="white" filter="url(#audit-browser-shadow)" />
         <rect x="80" y="60" width="640" height="38" rx="12" fill="#F2F2F2" />
         <rect x="80" y="80" width="640" height="18" fill="#F2F2F2" />
 
-        {/* Layer 3: bad website content */}
+        {/* Browser dots */}
+        <circle cx="100" cy="76" r="5" fill="#FF5F56" />
+        <circle cx="116" cy="76" r="5" fill="#FFBD2E" />
+        <circle cx="132" cy="76" r="5" fill="#27C93F" />
 
-        {/* Nav */}
-        <rect x="96" y="114" width="44" height="8" rx="2" fill="#DDD" />
-        <rect x="506" y="114" width="34" height="8" rx="2" fill="#DDD" />
-        <rect x="548" y="114" width="34" height="8" rx="2" fill="#DDD" />
-        <rect x="590" y="114" width="34" height="8" rx="2" fill="#DDD" />
-        <rect x="632" y="108" width="72" height="22" rx="3" fill="#DDD" />
+        {/* Real screenshot clipped to browser content area */}
+        <image
+          href="/images/evoltage-hero-old.png"
+          x="80" y="98" width="640" height="342"
+          preserveAspectRatio="xMidYMin slice"
+          clipPath="url(#audit-hero-clip)"
+        />
 
-        <line x1="80" y1="132" x2="720" y2="132" stroke="#EFEFEF" strokeWidth="1" />
+        {/* Annotation 1 — No hook */}
+        <rect x="210" y="310" width="380" height="80" rx="4" fill="rgba(255,94,0,0.12)" style={{ stroke: 'var(--accent)' }} strokeWidth="1.5" strokeDasharray="5 3" />
+        <rect x="342" y="277" width="116" height="30" rx="6" style={{ fill: 'var(--ink)' }} />
+        <polygon points="400,310 394,307 406,307" style={{ fill: 'var(--ink)' }} />
+        <text x="400" y="296" textAnchor="middle" fontFamily="'Space Grotesk', system-ui, sans-serif" fontSize="9.5" fontWeight="500" style={{ fill: 'var(--paper)' }} letterSpacing="0.04em">No hook</text>
 
-        {/* Hero — ragged headline */}
-        <rect x="96" y="152" width="260" height="15" rx="3" fill="#C8C8C8" />
-        <rect x="96" y="173" width="400" height="15" rx="3" fill="#C8C8C8" />
-        <rect x="96" y="194" width="180" height="15" rx="3" fill="#C8C8C8" />
+        {/* Fold line */}
+        <line x1="80" y1="440" x2="720" y2="440" stroke="var(--accent)" strokeWidth="1" strokeDasharray="6 4" opacity="0.6" />
+        <text x="724" y="443" fontFamily="'Space Grotesk', system-ui, sans-serif" fontSize="8" fontWeight="500" style={{ fill: 'var(--accent)' }} opacity="0.7" letterSpacing="0.04em">↑ fold</text>
 
-        {/* Wall of subtext */}
-        <rect x="96" y="222" width="340" height="9" rx="2" fill="#DDD" />
-        <rect x="96" y="235" width="310" height="9" rx="2" fill="#DDD" />
-        <rect x="96" y="248" width="280" height="9" rx="2" fill="#DDD" />
-        <rect x="96" y="261" width="320" height="9" rx="2" fill="#DDD" />
+        {/* Annotation 2 — Weak CTA */}
+        <rect x="290" y="410" width="220" height="36" rx="4" fill="rgba(255,94,0,0.12)" style={{ stroke: 'var(--accent)' }} strokeWidth="1.5" strokeDasharray="5 3" />
+        <rect x="180" y="408" width="100" height="30" rx="6" style={{ fill: 'var(--ink)' }} />
+        <polygon points="280,420 290,414 290,426" style={{ fill: 'var(--ink)' }} />
+        <text x="230" y="427" textAnchor="middle" fontFamily="'Space Grotesk', system-ui, sans-serif" fontSize="9.5" fontWeight="500" style={{ fill: 'var(--paper)' }} letterSpacing="0.04em">Weak CTA</text>
 
-        {/* Weak CTA */}
-        <rect x="96" y="284" width="88" height="24" rx="3" fill="#C8C8C8" />
-
-        {/* Hero image */}
-        <foreignObject x="448" y="136" width="264" height="252">
-          <img
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?fm=webp&fit=crop&w=456&q=80"
-            alt="Tradesman's website shown in a browser mockup before audit"
-            loading="lazy"
-            width={264}
-            height={252}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 4, display: 'block' }}
-          />
-        </foreignObject>
-
-        {/* Body text below hero */}
-        <rect x="96" y="328" width="300" height="8" rx="2" fill="#E5E5E5" />
-        <rect x="96" y="341" width="260" height="8" rx="2" fill="#E5E5E5" />
-        <rect x="96" y="354" width="290" height="8" rx="2" fill="#E5E5E5" />
-        <rect x="96" y="367" width="220" height="8" rx="2" fill="#E5E5E5" />
-
-        {/* Footer */}
-        <rect x="80" y="400" width="640" height="40" fill="#F5F5F5" />
-        <rect x="96" y="416" width="100" height="7" rx="2" fill="#DDD" />
-        <rect x="532" y="416" width="55" height="7" rx="2" fill="#DDD" />
-        <rect x="596" y="416" width="55" height="7" rx="2" fill="#DDD" />
-        <rect x="660" y="416" width="44" height="7" rx="2" fill="#DDD" />
-
-        {/* Layer 4: audit annotations */}
-
-        {/* Annotation 1 — headline has no hook */}
-        <rect x="90" y="146" width="354" height="70" rx="4"
-          fill="rgba(255,94,0,0.08)" style={{ stroke: 'var(--accent)' }} strokeWidth="1.5" strokeDasharray="5 3" />
-        <rect x="209" y="108" width="116" height="30" rx="6" style={{ fill: 'var(--ink)' }} />
-        <polygon points="267,146 261,138 273,138" style={{ fill: 'var(--ink)' }} />
-        <text x="267" y="127" textAnchor="middle"
-          fontFamily="'Space Grotesk', system-ui, sans-serif" fontSize="9.5"
-          fontWeight="500" style={{ fill: 'var(--paper)' }} letterSpacing="0.04em">
-          No hook
-        </text>
-
-        {/* Annotation 2 — CTA is invisible */}
-        <rect x="90" y="279" width="100" height="34" rx="4"
-          fill="rgba(255,94,0,0.10)" style={{ stroke: 'var(--accent)' }} strokeWidth="1.5" strokeDasharray="5 3" />
-        <rect x="204" y="280" width="148" height="30" rx="6" style={{ fill: 'var(--ink)' }} />
-        <polygon points="204,299 192,293 204,287" style={{ fill: 'var(--ink)' }} />
-        <text x="278" y="299" textAnchor="middle"
-          fontFamily="'Space Grotesk', system-ui, sans-serif" fontSize="9.5"
-          fontWeight="500" style={{ fill: 'var(--paper)' }} letterSpacing="0.04em">
-          No clear action
-        </text>
-
-        {/* Cursor near CTA */}
-        <g transform="translate(162, 308)">
-          <path
-            d="M0 0 L0 18 L4 14 L7 20 L9.5 19 L6.5 13 L12 13 Z"
-            style={{ fill: 'var(--paper)' }} stroke="#333" strokeWidth="1" strokeLinejoin="round" />
-        </g>
-
-        {/* Layer 5: REC indicator */}
-        <circle cx="666" cy="30" r="7" style={{ fill: 'var(--accent)' }} />
-        <text x="679" y="35"
-          fontFamily="'Space Grotesk', system-ui, sans-serif" fontSize="12"
-          fontWeight="500" style={{ fill: 'var(--ink)' }} letterSpacing="0.10em">
-          REC
-        </text>
+        {/* Annotation 3 — Phone buried */}
+        <rect x="440" y="98" width="280" height="24" rx="4" fill="rgba(255,94,0,0.12)" style={{ stroke: 'var(--accent)' }} strokeWidth="1.5" strokeDasharray="5 3" />
+        <rect x="480" y="126" width="130" height="30" rx="6" style={{ fill: 'var(--ink)' }} />
+        <polygon points="545,126 539,122 551,122" style={{ fill: 'var(--ink)' }} />
+        <text x="545" y="145" textAnchor="middle" fontFamily="'Space Grotesk', system-ui, sans-serif" fontSize="9.5" fontWeight="500" style={{ fill: 'var(--paper)' }} letterSpacing="0.04em">Phone buried</text>
       </svg>
     </div>
   );
@@ -185,7 +101,7 @@ function AuditFig() {
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function Hero({ fonts, onOpenCase }: { fonts: FontSet; onOpenCase: (id: string) => void }) {
   return (
-    <section className="wrap" style={{ containerType: 'inline-size', padding: '70px 0 100px' }}>
+    <section className="wrap" style={{ containerType: 'inline-size', paddingBlock: '70px 100px' }}>
       <Reveal>
         <span className="eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: 12 }}>
           <span style={{ width: 24, height: 1, background: 'currentColor' }} />
@@ -278,7 +194,7 @@ function Marquee() {
 // ─── Audit ────────────────────────────────────────────────────────────────────
 function AuditOffer({ fonts }: { fonts: FontSet }) {
   return (
-    <section id="audit" className="wrap" style={{ containerType: 'inline-size', padding: '110px 0 80px' }}>
+    <section id="audit" className="wrap" style={{ containerType: 'inline-size', paddingBlock: '110px 80px' }}>
       <div className="audit-grid" style={{ display: 'grid', gap: 80, alignItems: 'center' }}>
         <Reveal>
           <AuditFig />
@@ -324,7 +240,7 @@ function AuditOffer({ fonts }: { fonts: FontSet }) {
 
 // ─── PainItem (accordion) ────────────────────────────────────────────────────
 function PainItem({ pain, index, fonts }: { pain: { t: string; n: string }; index: number; fonts: FontSet }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <Reveal delay={index * 80}>
@@ -332,9 +248,10 @@ function PainItem({ pain, index, fonts }: { pain: { t: string; n: string }; inde
         className="pain-item"
         data-open={String(open)}
         style={{
-          padding: '28px 24px 28px 0',
+          padding: open ? '28px 24px 28px 0' : '16px 24px 16px 0',
           borderTop: '1px solid var(--line)',
           borderBottom: index >= 2 ? '1px solid var(--line)' : 'none',
+          transition: 'padding 350ms ease',
         }}
       >
         {/* Header row — always visible */}
@@ -342,7 +259,8 @@ function PainItem({ pain, index, fonts }: { pain: { t: string; n: string }; inde
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          marginBottom: 18,
+          marginBottom: open ? 18 : 8,
+          transition: 'margin 350ms ease',
         }}>
           <span style={{
             fontFamily: 'var(--mono)',
@@ -366,9 +284,6 @@ function PainItem({ pain, index, fonts }: { pain: { t: string; n: string }; inde
               minWidth: 48,
               minHeight: 48,
               color: 'var(--accent)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
             }}
           >
             <span style={{
@@ -420,7 +335,7 @@ function Problem({ fonts }: { fonts: FontSet }) {
     { t: 'Your checkout is costing you sales right now.', n: "Every extra field, confusing step, or unclear button is a reason to quit. We run through your checkout as a customer would, find every point of friction, and remove it." },
   ];
   return (
-    <section className="wrap" style={{ containerType: 'inline-size', padding: '80px 0' }}>
+    <section className="wrap" style={{ containerType: 'inline-size', paddingBlock: '80px' }}>
       <div className="problem-grid" style={{ display: 'grid', gap: 48, alignItems: 'start' }}>
         <Reveal>
           <div>
@@ -450,16 +365,25 @@ function WorkCard({ c, index, fonts, onOpen }: { c: CaseStudy; index: number; fo
 
   const cardVisual = (
     <>
-      <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 5', borderRadius: 22, overflow: 'hidden', background: c.tone, border: '1px solid rgba(6,55,45,0.05)', transition: 'transform .6s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'translateY(-6px)' : 'translateY(0)' }}>
-        <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true" style={{ transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'scale(1.06)' : 'scale(1)' }}>
-          <defs>
-            <pattern id={`work-stripes-${index}`} patternUnits="userSpaceOnUse" width="3" height="3" patternTransform="rotate(45)">
-              <line x1="0" y1="0" x2="0" y2="3" stroke="rgba(6,55,45,0.06)" strokeWidth="1.5" />
-            </pattern>
-          </defs>
-          <rect width="100" height="100" fill={`url(#work-stripes-${index})`} />
-        </svg>
-        <div style={{ position: 'absolute', top: 18, left: 18, right: 18, display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--display)', fontSize: 11, color: 'rgba(6,55,45,0.55)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 5', borderRadius: 22, overflow: 'hidden', background: c.image ? '#1a1a1a' : c.tone, border: '1px solid rgba(6,55,45,0.05)', transition: 'transform .6s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'translateY(-6px)' : 'translateY(0)' }}>
+        {c.image ? (
+          <img
+            src={c.image}
+            alt={`${c.name} — shipped project`}
+            loading="lazy"
+            style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'scale(1.06)' : 'scale(1)' }}
+          />
+        ) : (
+          <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true" style={{ transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'scale(1.06)' : 'scale(1)' }}>
+            <defs>
+              <pattern id={`work-stripes-${index}`} patternUnits="userSpaceOnUse" width="3" height="3" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="3" stroke="rgba(6,55,45,0.06)" strokeWidth="1.5" />
+              </pattern>
+            </defs>
+            <rect width="100" height="100" fill={`url(#work-stripes-${index})`} />
+          </svg>
+        )}
+        <div style={{ position: 'absolute', top: 18, left: 18, right: 18, display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--display)', fontSize: 11, color: c.image ? 'rgba(255,255,255,0.75)' : 'rgba(6,55,45,0.55)', letterSpacing: '0.14em', textTransform: 'uppercase' }}>
           <span>case {String(index + 1).padStart(2, '0')}</span>
           <span>{c.figure}</span>
         </div>
@@ -501,9 +425,8 @@ function Work({ fonts, onOpenCase }: { fonts: FontSet; onOpenCase: (id: string) 
             <div>
               <div className="eyebrow" style={{ marginBottom: 18 }}>(03) Selected work</div>
               <h2 style={{ margin: 0, fontFamily: fonts.display, fontWeight: 600, fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: 0.95, letterSpacing: '-0.03em' }}>
-                Three recent{' '}
-                <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400 }}>shipped</span>{' '}
-                projects.
+                Recent{' '}
+                <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400 }}>projects.</span>
               </h2>
             </div>
           </Reveal>
@@ -524,8 +447,6 @@ function About({ fonts }: { fonts: FontSet }) {
   const stats = [
     { n: '48 hrs', l: 'Brief to live site' },
     { n: '1 audit', l: 'Free, no obligation' },
-    { n: '100%', l: 'No offshore hand-off' },
-    { n: '7 yrs', l: 'Design + growth' }
   ];
   const services = ['Web design', 'Web development', 'MVP development', 'Product / UX design', 'SEO & content', 'Paid ads & growth', 'Data analysis', 'CRO experiments'];
   return (
@@ -637,9 +558,6 @@ function ProcessStep({
                 minWidth: 48,
                 minHeight: 48,
                 color: 'var(--accent)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
               }}
             >
               <span style={{

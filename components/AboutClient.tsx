@@ -6,30 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { type FontSet, PAIRS } from '@/lib/fonts';
-
-// ─── Reveal ──────────────────────────────────────────────────────────────────
-function Reveal({ children, delay = 0, y = 20, style = {} }: { children: React.ReactNode; delay?: number; y?: number; style?: React.CSSProperties }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
-  useEffect(() => {
-    if (!ref.current) return;
-    const io = new IntersectionObserver(
-      es => es.forEach(e => { if (e.isIntersecting) setShown(true); }),
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-    );
-    io.observe(ref.current);
-    return () => io.disconnect();
-  }, []);
-  return (
-    <div ref={ref} style={{
-      ...style,
-      opacity: shown ? 1 : 0,
-      transform: shown ? 'translateY(0)' : `translateY(${y}px)`,
-      transition: `opacity .9s cubic-bezier(.2,.7,.2,1) ${delay}ms, transform 1s cubic-bezier(.2,.7,.2,1) ${delay}ms`,
-      willChange: 'opacity, transform',
-    }}>{children}</div>
-  );
-}
+import Reveal from './Reveal';
 
 // ─── StripedFig ─────────────────────────────────────────────────────────────
 function StripedFig({ aspect = '3 / 4', label = 'OO · 3:4', id = 'about-photo' }: { aspect?: string; label?: string; id?: string }) {
@@ -84,7 +61,7 @@ export default function AboutClient() {
 
       <main>
         {/* ── Bio Hero ─────────────────────────────────────────────────── */}
-        <section className="wrap" style={{ padding: '110px 0 80px', containerType: 'inline-size' }}>
+        <section className="wrap" style={{ paddingBlock: '110px 80px', containerType: 'inline-size' }}>
           <div className="about-bio-grid" style={{ display: 'grid', gap: 80, alignItems: 'start' }}>
             <Reveal>
               <StripedFig />

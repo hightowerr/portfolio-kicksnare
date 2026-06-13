@@ -17,6 +17,8 @@ export interface CaseStudy {
   blurb: string;
   meta: string;
   figure: string;
+  /** Optional card image — replaces striped placeholder when provided */
+  image?: string;
   problem: {
     lede: string;
     detail: string;
@@ -169,10 +171,11 @@ export const cases: CaseStudy[] = [
     role: 'Design + dev lead', stack: 'Next.js \u00b7 Vercel',
     services: ['Web design', 'SEO'],
     tone: '#DDE8DF',
-    tag: 'Web design \u00b7 SEO',
+    tag: 'Website rebuild',
     blurb: 'Free audit and concept rebuild for a 24-hour electrician. SEO health from 10 to 80+. Phone number findable in 0 seconds.',
     meta: '2025 \u00b7 3 days',
     figure: 'site \u00b7 9:19',
+    image: '/images/evoltage-shipped.png',
     problem: {
       lede: "JJ\u2019s electrician website buried the phone number 15 seconds down. The main CTA said \u201cRead more...\u201d",
       detail: "Nobody in the dark wants to read more. They want a phone number. JJ\u2019s site buried the phone number 15 seconds of scrolling down, had zero trust signals above the fold, and scored 10/100 on SEO health.",
