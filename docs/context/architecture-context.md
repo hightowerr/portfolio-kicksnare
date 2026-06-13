@@ -144,7 +144,7 @@ That is the complete list. No email service account, no CMS credentials, no data
 
 1. **No user data is stored.** The audit CTA is a hyperlink (`mailto:` or social DM link). No form submission, no persistence, no on-site email capture. If this changes, update the System Boundary and Stack before writing any code.
 2. **All fonts are local.** Never load from Google Fonts or any CDN. If a font isn't vendored in `public/fonts/`, it doesn't exist in the design. Font loading performance (large TTF files) is the primary mobile load-time risk.
-3. **`'use client'` boundaries are explicit.** Each page has one client root (`PortfolioClient`, `CaseStudyClient`, `AboutClient`). Shared interactive components (`Header`, `Footer`, `BottomBar`, `CaseStudyModal`, `RotatingWord`) are also `'use client'`. `page.tsx` and `layout.tsx` remain Server Components.
+3. **`'use client'` boundaries are explicit.** Each page has one client root (`PortfolioClient`, `CaseStudyClient`, `AboutClient`). Shared interactive components (`Header`, `Footer`, `BottomBar`, `CaseStudyModal`, `ContactModal`, `Reveal`, `RotatingWord`) are also `'use client'`. `page.tsx` and `layout.tsx` remain Server Components.
 4. **Design tokens are CSS custom properties on `:root` in `globals.css`.** No hardcoded hex values in component files. Always `var(--token)`.
 5. **Content lives in TSX.** A content change requires a code change. There is no editorial workflow and no CMS integration — this is a deliberate scope decision.
 6. **Case study data is defined once, in `lib/cases.ts`.** Card display in the Work section, modal detail view, and hero project list all reference the same source. Cases with `href` navigate to a dedicated page; those without open in the modal.

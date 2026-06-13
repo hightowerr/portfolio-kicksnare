@@ -94,9 +94,9 @@ Nothing active.
 
 ## Next Up
 
-- Replace StripedFig photo placeholders with real photos (About page)
+- Replace StripedFig photo placeholder with real OO headshot (About page) — blocked on content; see current-issues.md #4
 - ~~Replace S2 before/after mobile wireframes with real mobile screenshots of evoltageuk.co.uk~~ ✅ Done
-- Extract `Reveal` component to `components/Reveal.tsx` shared module (currently duplicated in PortfolioClient, CaseStudyClient, AboutClient)
+- ~~Extract `Reveal` component to `components/Reveal.tsx` shared module (currently duplicated in PortfolioClient, CaseStudyClient, AboutClient)~~ ✅ Done
 - Add real JJ testimonial quote to evoltage case study when available
 - Review full section balance at various viewport widths
 - Consider whether `ui-context.md` Brand Non-Negotiable #5 needs updating to document the illustration exception

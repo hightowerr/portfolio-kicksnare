@@ -451,6 +451,11 @@ footer {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ─── Accordion: PainItem ───────────────────────────────────────────────── */
+.pain-item__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .pain-item__body {
   display: grid;
   grid-template-rows: 0fr;
@@ -464,6 +469,11 @@ footer {
 }
 
 /* ─── Accordion: ProcessStep ────────────────────────────────────────────── */
+.process-step__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .process-step__body {
   display: grid;
   grid-template-rows: 0fr;

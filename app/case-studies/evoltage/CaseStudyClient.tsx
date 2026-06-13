@@ -7,30 +7,7 @@ import Footer from '@/components/Footer';
 import ContactModal from '@/components/ContactModal';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { type FontSet, PAIRS } from '@/lib/fonts';
-
-// ─── Reveal ──────────────────────────────────────────────────────────────────
-function Reveal({ children, delay = 0, y = 20, style = {}, className }: { children: React.ReactNode; delay?: number; y?: number; style?: React.CSSProperties; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
-  useEffect(() => {
-    if (!ref.current) return;
-    const io = new IntersectionObserver(
-      es => es.forEach(e => { if (e.isIntersecting) setShown(true); }),
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-    );
-    io.observe(ref.current);
-    return () => io.disconnect();
-  }, []);
-  return (
-    <div ref={ref} className={className} style={{
-      ...style,
-      opacity: shown ? 1 : 0,
-      transform: shown ? 'translateY(0)' : `translateY(${y}px)`,
-      transition: `opacity .9s cubic-bezier(.2,.7,.2,1) ${delay}ms, transform 1s cubic-bezier(.2,.7,.2,1) ${delay}ms`,
-      willChange: 'opacity, transform',
-    }}>{children}</div>
-  );
-}
+import Reveal from '@/components/Reveal';
 
 // ─── EvoltageBeforeFig (Section 1 — hero viewport) ──────────────────────────
 function EvoltageBeforeFig() {
@@ -202,7 +179,7 @@ function InlineStat({ value, label, sub, last, accent }: { value: string; label:
 // ─── Section 1: The Problem ─────────────────────────────────────────────────
 function S1TheProblem({ fonts }: { fonts: FontSet }) {
   return (
-    <section className="wrap" style={{ padding: '110px 0 80px', containerType: 'inline-size' }}>
+    <section className="wrap" style={{ paddingBlock: '110px 80px', containerType: 'inline-size' }}>
       <div className="cs-section-grid" style={{ display: 'grid', gap: 48, alignItems: 'start' }}>
         <Reveal>
           <div className="eyebrow" style={{ marginBottom: 40, color: 'var(--muted)' }}>(01) The problem</div>
@@ -256,13 +233,13 @@ function S2WhatWeBuilt({ fonts }: { fonts: FontSet }) {
   const bullets = [
     'Phone number one tap away on every page',
     "13 pages so Google finds you for 'electrician Loughborough'",
-    'Trust badges visible in 3 seconds — NAPIT, JIB, insured, Checkatrade 5.0',
+    'Trust badges visible in 3 seconds — NAPIT, JIB, insured, 5/5 on MyBuilder (59 reviews)',
     'Real job photos, not stock',
     'Built in 3 days',
   ];
 
   return (
-    <section className="wrap" style={{ padding: '80px 0', containerType: 'inline-size' }}>
+    <section className="wrap" style={{ paddingBlock: '80px', containerType: 'inline-size' }}>
       <div className="cs-section-grid" style={{ display: 'grid', gap: 48, alignItems: 'start' }}>
         <Reveal>
           <div className="eyebrow" style={{ marginBottom: 40, color: 'var(--muted)' }}>(02) What we built</div>
@@ -325,6 +302,16 @@ function S2WhatWeBuilt({ fonts }: { fonts: FontSet }) {
               We ran three audits and diagnosed 10 problems before writing a line of code.
             </p>
           </Reveal>
+          <Reveal delay={300}>
+            <p style={{
+              margin: '12px 0 0', maxWidth: 640, color: 'var(--muted)',
+              fontSize: 17, lineHeight: 1.55,
+            }}>
+              The polished finish is deliberate. Homeowners with a tripped fuse board
+              pick the electrician who looks trustworthy, not the cheapest. A professional
+              site filters for the jobs worth taking.
+            </p>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -340,7 +327,7 @@ function S3TheNumbers({ fonts }: { fonts: FontSet }) {
   ];
 
   return (
-    <section className="wrap" style={{ padding: '80px 0', containerType: 'inline-size' }}>
+    <section className="wrap" style={{ paddingBlock: '80px', containerType: 'inline-size' }}>
       <div className="cs-section-grid" style={{ display: 'grid', gap: 48, alignItems: 'start' }}>
         <Reveal>
           <div className="eyebrow" style={{ marginBottom: 40, color: 'var(--muted)' }}>(03) The numbers</div>
