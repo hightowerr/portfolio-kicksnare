@@ -49,6 +49,18 @@ None active. Evoltage case study feature implemented.
 
 Nothing active.
 
+## Recently Completed — WorkCard Image CLS Fix
+
+- Fixed WorkCard CLS issue: when `c.image` was present, `aspectRatio` was conditionally set to `undefined` and `<img>` had no `height`/`objectFit`, causing variable card heights and layout shift during image load
+- `aspectRatio: '4 / 5'` now always applied to the card container regardless of image presence
+- `<img>` now has `height: '100%'` + `objectFit: 'cover'` to fill the fixed-aspect container
+- Grid layout stays consistent whether cards have images or striped placeholders
+
+## Recently Completed — Issue Numbering Fix
+
+- Renumbered Open items in `docs/context/current-issues.md`: #12 → #15 (PostHog), #13 → #16 (Clarity) to avoid collision with Solved #12 and #13
+- Reordered Solved list so #13 (accordion toggles) comes before #14 (WorkCard CLS) — was out of sequence
+
 ## Recently Completed — Evoltage Hero Screenshot
 
 - Replaced SVG wireframe in `EvoltageBeforeFig` (S1) with real desktop screenshot (`evoltage-hero-old.png`) inside browser mockup frame

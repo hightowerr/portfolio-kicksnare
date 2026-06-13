@@ -4,8 +4,8 @@
 
 3. **No JJ testimonial** — Evoltage case study `result.quote` has empty strings. JJ has not been contacted about using his business as a case study. The case study CTA section omits a quote block accordingly. Add testimonial data to `lib/cases.ts` if/when obtained.
 4. **About page photo blocked on content** — About page still uses `StripedFig` placeholder for OO photo. A real headshot is needed at `public/images/oo-portrait.jpg` (or similar). Once provided, replace `<StripedFig />` in `components/AboutClient.tsx` line 67 with a `next/image` or `<img>` element styled to match (3:4 aspect, 28px radius, overflow hidden). Case study figures are all resolved — real screenshots in S1 and S2.
-12. Need to set up PostHog
-13. Need to set up Microsoft Clarity
+15. Need to set up PostHog
+16. Need to set up Microsoft Clarity
 
 ### Solved
 
@@ -22,3 +22,4 @@
 11. **Problem accordions closed by default + white space** — `PainItem` in `PortfolioClient.tsx` now defaults to `useState(true)` (open). Padding transitions from `28px` (open) to `16px` (closed), header-to-title margin from `18px` to `8px`, both with `350ms ease` matching the body transition.
 12. **Evoltage shipped screenshot** — Screenshot captured from `evoltage-uk.vercel.app` via shareable link, saved to `public/images/evoltage-shipped.png`. Added `image?: string` field to `CaseStudy` interface in `lib/cases.ts`. `WorkCard` in `PortfolioClient.tsx` now conditionally renders `<img>` when `c.image` exists, falls back to striped SVG placeholder otherwise. Label text color adjusts to white-alpha on image cards for readability.
 13. **Accordion toggles broken on desktop** — Inline `display: 'flex'` on `.pain-item__toggle` and `.process-step__toggle` buttons overrode the CSS `@container (min-width: 520px) { display: none }` rule. Moved `display: flex` + alignment to CSS classes in `globals.css`, removed from inline styles in `PortfolioClient.tsx`. Desktop: toggles hidden, bodies always open. Mobile: toggles visible and functional.
+14. **WorkCard image CLS fixed** — When `c.image` was present, `aspectRatio` was dropped to `undefined` and `<img>` had no `height`/`objectFit`, causing inconsistent card heights and layout shift. Fix: `aspectRatio: '4 / 5'` is now always applied, and `<img>` gets `height: '100%'` + `objectFit: 'cover'` to fill the container. Grid stays consistent regardless of image presence.

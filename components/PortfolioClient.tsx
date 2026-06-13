@@ -365,13 +365,13 @@ function WorkCard({ c, index, fonts, onOpen }: { c: CaseStudy; index: number; fo
 
   const cardVisual = (
     <>
-      <div style={{ position: 'relative', width: '100%', aspectRatio: c.image ? undefined : '4 / 5', borderRadius: 22, overflow: 'hidden', background: c.image ? '#1a1a1a' : c.tone, border: '1px solid rgba(6,55,45,0.05)', transition: 'transform .6s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'translateY(-6px)' : 'translateY(0)' }}>
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 5', borderRadius: 22, overflow: 'hidden', background: c.image ? '#1a1a1a' : c.tone, border: '1px solid rgba(6,55,45,0.05)', transition: 'transform .6s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'translateY(-6px)' : 'translateY(0)' }}>
         {c.image ? (
           <img
             src={c.image}
             alt={`${c.name} — shipped project`}
             loading="lazy"
-            style={{ display: 'block', width: '100%', transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'scale(1.06)' : 'scale(1)' }}
+            style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'scale(1.06)' : 'scale(1)' }}
           />
         ) : (
           <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true" style={{ transition: 'transform 1.2s cubic-bezier(.2,.7,.2,1)', transform: hover ? 'scale(1.06)' : 'scale(1)' }}>
