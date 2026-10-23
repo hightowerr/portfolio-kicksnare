@@ -6,6 +6,8 @@
 4. **About page photo blocked on content** — About page still uses `StripedFig` placeholder for OO photo. A real headshot is needed at `public/images/oo-portrait.jpg` (or similar). Once provided, replace `<StripedFig />` in `components/AboutClient.tsx` line 67 with a `next/image` or `<img>` element styled to match (3:4 aspect, 28px radius, overflow hidden). Case study figures are all resolved — real screenshots in S1 and S2.
 15. Need to set up PostHog
 16. Need to set up Microsoft Clarity
+17. **Lint baseline warnings (adoption 2026-10-23, Phase TRIGGER)** — `pnpm check` runs ESLint 9 with `eslint-config-next` through `FlatCompat` (`eslint.config.mjs`); `next lint` is deprecated and prompted interactively. Baseline after adoption: 0 errors, 11 warnings. Unused imports (`useRef` ×3, `ArrowRight`, `Soundwave`, `Close`, `StripedFig`, `services`) in `CaseStudyClient.tsx`, `AboutClient.tsx`, `PortfolioClient.tsx`; two `<img>` elements flagged by `no-img-element`; one `exhaustive-deps` warning in `CaseStudyModal.tsx` line 270. The unused-import files carry uncommitted September edits, so the warnings stay until that work lands. Clear them in the first slice that touches each file. Three `react/no-unescaped-entities` errors in `CaseStudyModal.tsx` were fixed at adoption (`"` → `&quot;`, same glyph).
+18. **Momentum testimonial wording unconfirmed (TRIGGER 2026-10-23)** — Paul granted the testimonial in person on 2026-10-23, one permission covering the Kicksnare site, personal LinkedIn and the Kicksnare Digital X account. Whether he approved the drafted wording or pointed at Allan's 3 September thank-you email is unverified. V0 copy in the A3 build sequence waits on this. Decision owed by the Owner before SHAPE writes the S3/S4 spec.
 
 ### Solved
 

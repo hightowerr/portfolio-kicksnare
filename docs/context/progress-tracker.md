@@ -6,13 +6,23 @@ Update this file whenever the current phase, active feature, or implementation s
 
 ## Current Phase
 
-Evoltage Case Study — all 5 slices (V1–V5) complete
+Feature Engineering Loop v2.5 adopted 2026-10-23. Wave 1 of `momentum-case-study` sits at TRIGGER, Phase SHAPE pending. The loop contract (`docs/loops/feature-loop-contract.md`) is the authority on phase from here on.
 
 ---
 
 ## Current Goal
 
-None active. Evoltage case study feature implemented.
+Run `prompts/04a-problem-space.md` on the Momentum case study A3 to produce the feature brief, then SHAPE wave 1 with the `/shaping` skill.
+
+---
+
+## Loop waves
+
+| Wave | Slice | Status | Date |
+|------|-------|--------|------|
+| 1 | momentum-case-study (unsliced) | TRIGGER | 2026-10-23 |
+
+Pre-adoption features (audit-fig, evoltage-case-study, hero-word-rotation, lets-talk-rework, mobile-first) are recorded under Completed below and in `docs/feature-specs/`. They never ran through VERIFY, DRIFT AUDIT or RETRO.
 
 ---
 

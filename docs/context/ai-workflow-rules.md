@@ -1,60 +1,25 @@
-# Development Workflow
+# AI Workflow Rules
 
-## Approach
+The Feature Engineering Loop (`AI engineering feature loop.md`) owns the build cycle. This file holds the scoping and delivery rules that apply inside every phase.
 
-Build this project incrementally using a spec-driven workflow. Context files define what to build, how to build it, and what the current state of progress is. Always implement against these specs — do not infer or invent behavior from scratch.
+## Scoping
+- Implement only what the spec describes. Do not refactor surrounding code, add abstractions, or design for hypothetical requirements.
+- When you have enough information to act, act. Do not re-derive facts already established.
+- Work on one slice at a time. Split a slice that mixes UI changes with data-model changes, or that cannot be verified end to end quickly.
 
-## Scoping Rules
+## When to stop and ask
+- A behaviour deviation on a spec-anchored slice is a decision owed. Stop and ask.
+- A rule the spec does not state, that you would have to invent, is a decision owed.
+- A requirement that is missing from the context files goes into `docs/context/current-issues.md` as an open question before work continues. Do not invent product behaviour.
 
-- Work on one feature unit or subsystem at a time.
-- Prefer small, verifiable increments over large speculative changes.
-- Do not combine unrelated system boundaries in a single implementation step.
+## Delivery
+- One slice, one agent, one worktree.
+- Fast feedback after every slice, never at the end of a wave: `pnpm check` and `bash scripts/blocklist-grep.sh`.
+- Protected foundation components stay default: `components/ui/*` and third-party library internals. Put project styling and feature logic in app-level components. Modify a foundation component only when a plan names it.
 
-## When To Split Work
+## Keeping docs in sync
+- Update the relevant context file when implementation changes the architecture, boundaries, storage model, conventions or feature scope. RETRO applies anything queued.
+- `docs/context/progress-tracker.md` reflects the actual state of the implementation, not the intended state.
 
-Split an implementation step if it combines:
-
-- UI changes and background task changes
-- Real-time canvas state and database persistence
-- Multiple unrelated API routes
-- Behavior that is not clearly defined in the context files
-
-If a change cannot be verified end to end quickly, the scope is too broad — split it.
-
-## Handling Missing Requirements
-
-- Do not invent product behavior that is not defined in the context files.
-- If a requirement is ambiguous, resolve it in the relevant context file before implementing.
-- If a requirement is missing, add it as an open question in `progress-tracker.md` before continuing.
-
-## Protected Foundation Components
-
-Do not modify generated third-party foundation components unless explicitly instructed.
-
-This includes:
-
-- `components/ui/*` (shadcn/ui components)
-- third-party library internals
-
-These should remain default and reusable.
-
-Project-specific styling, layout changes, and feature logic must be implemented in app-level components instead of modifying foundation components.
-
-Only modify these files when a task explicitly requires it.
-
-## Keeping Docs In Sync
-
-Update the relevant context file whenever implementation changes:
-
-- System architecture or boundaries
-- Storage model decisions
-- Code conventions or standards
-- Feature scope
-
-Progress state must reflect the actual state of the implementation, not the intended state.
-
-## Before Moving To The Next Unit
-
-1. The current unit works end to end within its defined scope.
-2. No invariant defined in `architecture-context.md` was violated.
-3. `progress-tracker.md` reflects the completed work.
+## Pre-adoption history
+- `docs/feature-specs/` holds the five features shaped before the loop (audit-fig, evoltage-case-study, hero-word-rotation, lets-talk-rework, mobile-first). They are plans by rule and read-only. New features start under `docs/shaping/<feature>/` from `prompts/04a-problem-space.md`.
