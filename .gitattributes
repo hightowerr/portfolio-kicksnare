@@ -1,0 +1,8 @@
+# Parallel waves append to these files from separate worktrees.
+# The work log merges entry by entry through scripts/merge-work-log.py. Set the driver up once
+# per clone: git config merge.work-log.driver "python3 scripts/merge-work-log.py %O %A %B"
+# Without that config, git uses its normal merge and reports conflicts.
+docs/loops/work-log.md merge=work-log
+# The issues file is edited, not only appended. Union keeps both sides' lines; check the result
+# for a duplicated or stale line.
+docs/context/current-issues.md merge=union

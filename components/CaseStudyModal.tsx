@@ -97,9 +97,9 @@ function CSApproach({ c, fonts, isMobile }: { c: CaseStudy; fonts: FontSet; isMo
       <div style={{ margin: '0 0 48px', padding: isMobile ? '24px 20px' : '28px 32px', borderRadius: 22, background: 'var(--primary)', color: 'var(--paper)', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'auto 1fr', gap: isMobile ? 16 : 32, alignItems: 'center' }}>
         <span style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', color: 'rgba(249,254,253,0.5)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>{c.approach.insight.label} →</span>
         <p style={{ margin: 0, fontFamily: fonts.display, fontSize: isMobile ? 20 : 26, lineHeight: 1.25, letterSpacing: '-0.018em', color: 'var(--paper)' }}>
-          <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, color: 'var(--accent)' }}>"</span>
+          <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, color: 'var(--accent)' }}>&quot;</span>
           {c.approach.insight.body}
-          <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, color: 'var(--accent)' }}>"</span>
+          <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, color: 'var(--accent)' }}>&quot;</span>
         </p>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)', gap: 0 }}>
@@ -166,7 +166,7 @@ function CSResult({ c, fonts, isMobile }: { c: CaseStudy; fonts: FontSet; isMobi
       </div>
       <div style={{ marginTop: 64, padding: isMobile ? '28px 20px' : '36px 40px', borderRadius: 24, background: 'rgba(249,254,253,0.05)', border: '1px solid rgba(249,254,253,0.10)', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 2fr', gap: isMobile ? 24 : 64, alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
-          <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, fontSize: 80, lineHeight: 0.8, color: 'var(--accent)' }}>"</span>
+          <span style={{ fontFamily: fonts.serif, fontStyle: 'italic', fontWeight: 400, fontSize: 80, lineHeight: 0.8, color: 'var(--accent)' }}>&quot;</span>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             <span style={{ fontFamily: fonts.display, fontSize: 16, fontWeight: 500, color: 'var(--paper)' }}>{c.result.quote.who}</span>
             <span style={{ fontFamily: 'var(--display)', fontSize: 11, letterSpacing: '0.14em', color: 'rgba(249,254,253,0.55)', textTransform: 'uppercase' }}>{c.result.quote.role}</span>

@@ -6,19 +6,6 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 <!-- END:nextjs-agent-rules -->
 
-## Application Building Context
+## Project guidance
 
-Read these files **in order** before implementing or making any architectural decision:
-
-1. `docs/context/project-overview.md` — product definition, goals, features, and scope
-2. `docs/context/architecture-context.md` — system structure, boundaries, storage model, and invariants
-3. `docs/context/ui-context.md` — theme, colors, typography, canvas design, and component conventions
-4. `docs/context/code-standards.md` — implementation rules and conventions
-5. `docs/context/ai-workflow-rules.md` — development workflow, scoping rules, and delivery approach
-6. `docs/context/progress-tracker.md` — current phase, completed work, open questions, and next steps
-
-Update `docs/context/progress-tracker.md` after each meaningful implementation change. If implementation changes the architecture, scope, or standards in the context files, update the relevant file before continuing.
-
-The design system (CSS tokens, component previews, JSX examples) lives in `docs/context/design-system/project/`.
-
----
+`CLAUDE.md` is the hub for this repository: the context files to read in order, the environment, and the Feature Engineering Loop with its non-negotiable rules. Read it first. This file carries only the Next.js notice above, so the two files never drift.

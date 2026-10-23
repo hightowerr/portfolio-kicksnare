@@ -1,0 +1,8 @@
+# Mechanism blocklist allowlist — read by scripts/blocklist-grep.sh.
+#
+# One phrase per line, matched case-insensitively and removed from the line before the grep runs.
+# Text after "#" is a comment. Every entry states why the phrase is domain language, not mechanism.
+# RETRO reviews every entry; delete an entry nobody uses.
+#
+# Example:
+# session token   # the product sells "session tokens" to customers — a domain noun, not auth
